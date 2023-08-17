@@ -1,0 +1,291 @@
+#yellow{
+    background-color:yellow;
+}
+.container {
+    /*그리드 레이아웃을 선언-*/
+    display: grid; 
+    grid-template-columns: 2fr 1fr;
+}
+.saleInfo {
+    /*그리드 레이아웃을 선언-세일정보*/
+    display: grid; 
+    grid-template-columns: 50% 50%;
+}
+[class *= cell] {
+    box-sizing: border-box;
+    border: 3px solid black;
+    /* 각각의 요소들이 눈에 보이도록 입력하였습니다. */
+}
+#box {
+	width: 250px;
+	height: 30px;
+	background-color: #B7A4EE;
+	cursor: pointer;
+}
+/*등록, 리셋 버튼 애니메이션 및 디자인*/
+@keyframes buttonAnimation {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+}
+  
+#buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+  
+input[type="submit"], input[type="reset"] {
+    width: 100px;
+    height: 50px;
+    color: #FFFFFF;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    transition: background-color 0.3s, transform 0.3s;
+}
+  
+input[type="submit"] {
+    background-color: #0C4C8A;
+}
+  
+input[type="reset"] {
+    background-color: red;
+}
+  
+input[type="submit"]:hover, input[type="reset"]:hover {
+    animation-name: buttonAnimation; /*등록, 리셋 버튼 애니메이션 및 디자인 호출*/
+    background-color: gold;
+    transform: scale(1.1);
+}
+    
+/*홍시, 상추, 배*/
+.keyboard {
+    font-size: 2rem;
+    text-align: center;
+    color: white;
+    background: black;
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all .5s ease;
+}
+.pressed { /*키보드 1,2,3을 누르면 색이 변하면서 커짐*/
+background: tomato;
+transform: scale(1.2);
+}
+#keyBox {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-content: center;
+    grid-gap: 1rem;
+    padding: 20px;
+    height: 100px;
+    background: yellow;
+}
+header {
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(45deg, yellow, Orange);
+    font-size: 3em;
+    font-family: 'Song Myung', serif;
+}
+header span {
+    display: inline-block;
+    margin: 0 -.05em;
+    animation: header 1.4s infinite alternate;
+}
+header span:nth-child(2) {
+    animation-delay: .1s;
+}
+header span:nth-child(3) {
+    animation-delay: .2s;
+}
+header span:nth-child(4) {
+    animation-delay: .3s;
+}
+header span:nth-child(5) {
+    animation-delay: .4s;
+}
+header span:nth-child(6) {
+    animation-delay: .5s;
+}
+header span:nth-child(7) {
+    animation-delay: .6s;
+}
+@keyframes header {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+/*그 이외의 추석음식은? 부침종류, 간식종류, 해산물종류*/
+.skybluebox > div {
+    font-weight: bolder;
+    background-color: rgb(188, 229, 245);
+}
+/*class topic, addtopic 글씨체 */
+.topic, .addtopic{
+    font-size: 40px;
+    font-family: 'Jua', sans-serif;
+}
+.basic_font {
+    font-family: 'Noto Serif KR', serif;
+}
+/*body > p 글씨체*/
+body > p {
+    color: rgb(74, 2, 74);
+    margin: 100px;
+}
+a:link {
+    color: white;
+    text-decoration: none;
+}
+a:hover { /*링크 위에 마우스가 올라가면 바탕이 분홍색으로 변함*/
+    background-color: pink;
+}
+label {
+    display: inline-block; /*깔끔하게 정렬*/
+    width: 150px;
+    background-color: rgb(188, 229, 245);
+    text-align: center;
+}
+input:focus {
+    background-color: rgb(247, 235, 170);
+}
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #f2f2f2;
+    background-image: url(../images/chusuk.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+h3 {
+    text-align: center;
+    font-size: 30px;
+    margin: 0;
+    padding-top: 10px;
+}
+a {
+    text-decoration: none;
+}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0;
+}
+.content {
+    width: 20%;
+    margin: 15px;
+    box-sizing: border-box;
+    float: left;
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+    padding-top: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+    0 10px 10px rgba(0,0,0,0.22);
+    transition: .4s;
+    background: #f2f2f2;
+}
+.content:hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16),
+    0 3px 6px rgba(0,0,0,0.23);
+    transform: translate(0px, -8px);
+}
+img {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+.gallery > p {
+    text-align: center;
+    color: #b2bec3;
+    padding-top: 0 8px;
+}
+h6 {
+    font-size: 26px;
+    text-align: center;
+    color: #222f3e;
+    margin: 0;
+}
+.content > ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
+}
+li {
+    padding-top: 5px;
+}
+.fa {
+    font-size: 26px;
+    transition: .4s;
+    margin: 3px;
+}
+.checked {
+    color: #ff9f43;
+}
+.fa:hover {
+    transform: scale(1.3);
+    transition: .6s;
+}
+.content > button {
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+    width: 100%;
+    padding: 15px;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    margin-top: 5px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.buy-1 {
+    background: #2183a2;
+}
+.buy-2 {
+    background: #3b3e6e;
+}
+.buy-3 {
+    background: #0b0b0b;
+}
+.buy-4 {
+    background: #ff9f43;
+}
+@media(max-width: 1000px) {
+    .content {
+        width: 45px;
+    }
+}
+@media(max-width: 750px) {
+    .content {
+        width: 100%;
+    }
+}
+footer {
+    margin: 0px;
+    font-size: 50px;
+    height: 150px;
+    color: white;
+    background-color: black;
+}

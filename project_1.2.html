@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>김대륙/60212164/웹프로그래밍 과제#3</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 150px;
+            text-align: left;
+        }
+        .title, h1 {
+            font-size: 3em;
+        }
+        .subtitle {
+            font-size: 2em;
+        }
+        @media (max-width: 1000px) {
+            .title {
+                color: green;
+            }
+        }
+        @media (orientation: landscape) {
+            .subtitle {
+                color: orange;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="title"><h1>MJ식자재마트</h1></div>
+    <div class="subtitle">회원이 되시면 더 많은 정보를 누릴 수 있습니다!</div>
+    <div>
+        <form>
+            <fieldset>
+                <legend>사용자 정보</legend>
+                <ul>
+                    <li>
+                        <label for="uid">아이디</label>
+                        <input type="text" id="uid">
+                    </li>
+                    <li>
+                        <label for="pwd">비밀번호</label>
+                        <input type="password" id="pwd">
+                    </li>
+                    <li>
+                        <label for="utel">전화번호</label>
+                        <input type="tel" id="utel">
+                    </li>
+                    <li>
+                        <label for="uurl">URL</label>
+                        <input type="url" id="uurl">
+                    </li>
+                    <li>
+                        <label for="uemail">이메일</label>
+                        <input type="email" id="uemail">
+                    </li>
+                    <li>
+                        <label for="usearch">search</label>
+                        <input type="search" id="usearch">
+                    </li>
+                </ul>  
+                <br>
+                <div id="buttons">
+                    <input type="submit" value="제출">
+                    <input type="reset" value="취소">
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>과일 박스 주문</legend>
+                <ul>
+                    <li>
+                        <label><input type="checkbox" name="device" value="phone">사과</label>
+                        <input type="number" min="0" max="10">박스 (최대 10박스)
+                    </li>
+                    <li>
+                        <label><input type="checkbox" name="device" value="computer">바나나</label>
+                        <input type="number" min="0" max="10">박스 (최대 10박스)
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <label><input type="checkbox" name="device" value="tv">키위</label>
+                        <input type="range" min="0" max="8">박스 (최대 8박스)
+                    </li>
+                    <li>
+                        <label><input type="checkbox" name="device" value="switch">참외</label>
+                        <input type="range" min="0" max="8" value="1">박스 (최대 8박스)
+                    </li>
+                </ul>
+            </fieldset>
+            <fieldset>
+                <legend>과일에 대한 고객의 관심 사항</legend>
+                <p><b>관심사항을 골라주세요. 더 나은 품질의 과일을 위해 참고됩니다^^</b></p>
+                <label><input type="checkbox" value="book">외관</label>
+                <label><input type="checkbox" value="music">당도</label>
+                <label><input type="checkbox" value="movie">가격</label>
+                <label><input type="checkbox" value="sing">로켓배송</label>
+                
+                <p><b>입고 과일의 희망 등급 --- 등급에 따라 과일 가격 변동이 적용됩니다</b></p>
+                <label><input type ="radio" name="where" value="yes">1등급</label>
+                <label><input type ="radio" name="where" value="no">2등급</label>
+            </fieldset>
+            <fieldset>
+                <legend>희망 배송 날짜</legend>
+                <h3>2022-10-01부터 2022-12-31까지</h3>
+                <input type="date" min="2022-10-01" max="2022-12-31">
+            </fieldset>
+            <fieldset>
+                <legend>MJ식자재 회원 프로필 지정</legend>
+                <p>사진을 첨부하세요.</p>
+                <input type="file">
+                <p>배경색을 선택하세요.</p>
+                <input type="color">
+                <p>상태메시지를 입력하세요.</p>
+                <label for="desc">내용
+                    <textarea name="" id="desc" cols="30" rows="10"></textarea>
+                </label>
+            </fieldset>
+            <fieldset>
+                <legend>거주지</legend>
+                <label for="city">지역</label>
+                <select name="city" id="city">
+                    <optgroup label="서울시">
+                        <option value="강북구">강북구</option>
+                        <option value="강남구">강남구</option>
+                        <option value="서초구">서초구</option>
+                    </optgroup>
+                    <optgroup label="경기도 성남시">
+                        <option value="중원구">중원구</option>
+                        <option value="분당구">분당구</option>
+                    </optgroup>
+                </select>
+                <input type="submit" value="설정">
+            </fieldset>    
+        </form>
+    </div>
+
+    
+</body>
+</html>
