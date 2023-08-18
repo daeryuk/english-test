@@ -1245,20 +1245,24 @@ function nextQuestion () {
   }
 }
 
-//채점 결과 화면
-function showResult () {
-  optionsContainer.style.display = 'none'
-  question.style.display = 'none'
+//체점 결과
+function showResult() {
+  optionsContainer.style.display = 'none';
+  question.style.display = 'none';
 
-  let resultPercentage = (score / wordList.length) * 100
+  let totalQuestions = currentQuestionIndex + 1;
+  let resultPercentage = (score / totalQuestions) * 100;
+  
   resultText.innerText = `${
-    wordList.length
-  }문제 중에 ${score}개를 맞혔습니다. 점수는 ${resultPercentage.toFixed(
+    totalQuestions
+   }문제 중에 ${score}개를 맞혔습니다. 점수는 ${resultPercentage.toFixed(
     2
-  )}점 입니다.`
+   )}점 입니다.`;
 
-  resultContainer.style.display = 'block'
+   resultContainer.style.display = 'block';
 }
+
+
 
 //다시 시작 버튼 이벤트
 restartBtn.addEventListener('click', () => {
@@ -1268,7 +1272,6 @@ restartBtn.addEventListener('click', () => {
   initQuiz()
 })
 
-// 정답 판별
 // 정답 판별
 function checkAnswer (answer) {
   if (
@@ -1291,11 +1294,20 @@ function checkAnswer (answer) {
     optionsContainer.style.display = 'none'
     question.appendChild(answerDisplay)
 
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Enter') {
-        nextQuestion()
-      }
+    let nextButton = document.createElement('button')
+    nextButton.innerText = '다음 문제'
+    nextButton.addEventListener('click', () => {
+      nextQuestion()
     })
+
+    let endButton = document.createElement('button')
+    endButton.innerText = '테스트 종료'
+    endButton.addEventListener('click', () => {
+      showResult()
+    })
+
+    question.appendChild(nextButton)
+    question.appendChild(endButton)
   }
 }
 
