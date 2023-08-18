@@ -49,6 +49,13 @@ button:hover {
   background-color: #4caf50;
 }
 
+#endQuiz {
+  padding: 10px 20px;
+  width: auto;
+  cursor: pointer;
+  background-color: #cd4024;
+}
+
 #restart-btn {
   background-color: #008cba;
 }

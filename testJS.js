@@ -4,6 +4,8 @@ const optionsContainer = document.getElementById('options-container')
 
 const startEngQuizBtn = document.getElementById('engQuiz')
 const startKorQuizBtn = document.getElementById('korQuiz')
+const endQuizBtn = document.getElementById('endQuiz') 
+
 const quizContainer = document.getElementById('quiz-container')
 
 const resultContainer = document.getElementById('result-container')
@@ -1177,6 +1179,12 @@ startKorQuizBtn.addEventListener('click', () => {
   initQuiz()
 })
 
+//종료 버튼
+endQuizBtn.addEventListener('click', () => {
+  endQuizBtn.style.display = 'none'
+  showResult()
+})
+
 //셔플
 function shuffleArray (array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -1269,6 +1277,7 @@ restartBtn.addEventListener('click', () => {
   score = 0
   resultContainer.style.display = 'none'
   question.style.display = ''
+  endQuizBtn.style.display = ''
   initQuiz()
 })
 
@@ -1300,14 +1309,7 @@ function checkAnswer (answer) {
       nextQuestion()
     })
 
-    let endButton = document.createElement('button')
-    endButton.innerText = '테스트 종료'
-    endButton.addEventListener('click', () => {
-      showResult()
-    })
-
     question.appendChild(nextButton)
-    question.appendChild(endButton)
   }
 }
 
