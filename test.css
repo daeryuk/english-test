@@ -53,7 +53,7 @@ button:hover {
   padding: 10px 20px;
   width: auto;
   cursor: pointer;
-  background-color: #cd4024;
+  background-color: red;
 }
 
 #restart-btn {

@@ -1258,7 +1258,7 @@ function showResult() {
   optionsContainer.style.display = 'none';
   question.style.display = 'none';
 
-  let totalQuestions = currentQuestionIndex + 1;
+  let totalQuestions = currentQuestionIndex;
   let resultPercentage = (score / totalQuestions) * 100;
   
   resultText.innerText = `${
