@@ -1258,11 +1258,10 @@ function showResult() {
   optionsContainer.style.display = 'none';
   question.style.display = 'none';
 
-  let totalQuestions = currentQuestionIndex;
-  let resultPercentage = (score / totalQuestions) * 100;
+  let resultPercentage = (score / currentQuestionIndex) * 100;
   
   resultText.innerText = `${
-    totalQuestions
+    currentQuestionIndex
    }문제 중에 ${score}개를 맞혔습니다. 점수는 ${resultPercentage.toFixed(
     2
    )}점 입니다.`;
@@ -1305,6 +1304,7 @@ function checkAnswer (answer) {
 
     let nextButton = document.createElement('button')
     nextButton.innerText = '다음 문제'
+    currentQuestionIndex++
     nextButton.addEventListener('click', () => {
       nextQuestion()
     })
