@@ -1159,11 +1159,11 @@ const wordList = [
   { eng: 'detente', kor: '긴장 완화' },
   { eng: 'dampen', kor: '적시다, 꺾다' },
   { eng: 'setback', kor: '차질' },
-  { eng: 'threshold, kor: '문지방, 문턱' },
+  { eng: 'threshold', kor: '문지방, 문턱' },
   { eng: 'bout', kor: '한바탕, 한차례' },
   { eng: 'admonish', kor: '꾸짖다, 책망하다' },
   { eng: 'adumbrate', kor: '간략하게 알리다' },
-  { eng: 'accrete', kor: '함께 커지다, 부착하다' }
+  { eng: 'accrete', kor: '함께 커지다, 공생하다, 부착하다' }
 
 ]
 
