@@ -56,8 +56,10 @@ button:hover {
   background-color: red;
 }
 
-#restart-btn {
-  background-color: #008cba;
+#restart-btn, #wrongWord-btn {
+  min-width: 150px; /* 버튼의 최소 가로 길이를 150px로 설정 */
+  padding: 10px 20px; /* 버튼 내부 여백 설정 */
+  white-space: nowrap; /* 버튼 내용이 한 줄로 표시되도록 설정 */
 }
 
 #result-container {
