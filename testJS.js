@@ -13,6 +13,12 @@ const resultText = document.getElementById('result-text');
 const restartBtn = document.getElementById('restart-btn');
 const wrongWordBtn = document.getElementById('wrongWord-btn');
 
+// '단어 찾아보기' 버튼과 입력 필드, 결과 표시 영역을 찾는다.
+const searchWordBtn = document.getElementById('searchWord-btn');
+const searchWordInput = document.getElementById('searchWord-input');
+const searchWordResult = document.getElementById('searchWord-result');
+
+
 const wordList = [
   { eng: 'extention', kor: '확대' },
   { eng: 'phase', kor: '단계적으로 시행하다' },
@@ -1305,6 +1311,21 @@ let score = 0;
 let questionLanguage; //영어 or 한글
 let wrongWords = []; // 틀린 단어들을 저장할 배열 추가
 let attemptedQuestions = 0; // 시도한 문제 수
+
+// '단어 찾아보기' 버튼 클릭 이벤트 리스너
+searchWordBtn.addEventListener('click', function() {
+  const inputWord = searchWordInput.value; // 사용자가 입력한 단어를 가져옵니다.
+  const foundWord = wordList.find(word => word.eng.toLowerCase() === inputWord.toLowerCase()); // 입력한 단어가 wordList에 있는지 확인하고, 해당 단어 객체를 가져옵니다.
+
+  // 단어가 배열에 존재하는지 여부에 따라 메시지를 표시합니다.
+  if (foundWord) {
+    // 단어가 존재하면, 영어 단어와 그에 대한 한글 뜻을 함께 표시합니다.
+    searchWordResult.textContent = `"${foundWord.eng}"의 뜻은 "${foundWord.kor}" 입니다.`;
+  } else {
+    // 단어가 배열에 존재하지 않으면, 해당 메시지를 표시합니다.
+    searchWordResult.textContent = "리스트에 없는 단어 입니다.";
+  }
+});
 
 //영어 단어 시험
 startEngQuizBtn.addEventListener('click', () => {
