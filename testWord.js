@@ -1333,7 +1333,7 @@ searchWordBtn.addEventListener('click', function() {
       wordElement.textContent = foundWord.eng;
       
       const meaningElement = document.createElement('p');
-      meaningElement.textContent = `뜻: ${foundWord.kor}`;
+      meaningElement.textContent = `${foundWord.kor}`;
       
       content.appendChild(wordElement);
       content.appendChild(meaningElement);

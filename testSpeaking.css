@@ -84,6 +84,33 @@ h1 {
     color: var(--text);
 }
 
+/* Search results styling */
+.search-results {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(139, 92, 246, 0.05);
+    border-radius: 12px;
+    animation: fadeIn 0.3s ease-out forwards; /* 애니메이션 추가 */
+}
+
+.search-item {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: var(--surface);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.search-item-eng {
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.search-item-kor {
+    color: var(--text);
+}
+
 /* Enhanced button styles */
 button {
     font-size: 1rem;
@@ -229,6 +256,7 @@ button:active {
 .search-item {
     animation: fadeIn 0.3s ease-out forwards;
 }
+
 /* 오답 디자인 추가 */
 #answer-display {
     margin: 1rem 0;
