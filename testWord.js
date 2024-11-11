@@ -1,3 +1,4 @@
+// testWord.js
 const questionNumber = document.getElementById('question-number');
 const question = document.getElementById('question');
 const optionsContainer = document.getElementById('options-container');
@@ -1312,21 +1313,48 @@ let questionLanguage; //영어 or 한글
 let wrongWords = []; // 틀린 단어들을 저장할 배열 추가
 let attemptedQuestions = 0; // 시도한 문제 수
 
+///////
 // '단어 찾아보기' 버튼 클릭 이벤트 리스너
 searchWordBtn.addEventListener('click', function() {
-  const inputWord = searchWordInput.value; // 사용자가 입력한 단어를 가져옵니다.
-  const foundWord = wordList.find(word => word.eng.toLowerCase() === inputWord.toLowerCase()); // 입력한 단어가 wordList에 있는지 확인하고, 해당 단어 객체를 가져옵니다.
+  const inputWord = searchWordInput.value.trim(); // 앞뒤 공백 제거
+  const foundWord = wordList.find(word => word.eng.toLowerCase() === inputWord.toLowerCase());
 
-  // 단어가 배열에 존재하는지 여부에 따라 메시지를 표시합니다.
+  // 말풍선 컨테이너를 생성하고 스타일을 적용
+  const container = document.createElement('div');
+  container.className = 'speech-bubble';
+  
+  const content = document.createElement('div');
+  content.className = 'speech-bubble-content';
+
   if (foundWord) {
-    // 단어가 존재하면, 영어 단어와 그에 대한 한글 뜻을 함께 표시합니다.
-    searchWordResult.textContent = `"${foundWord.eng}"의 뜻은 "${foundWord.kor}" 입니다.`;
+      // 단어가 존재하는 경우
+      const wordElement = document.createElement('span');
+      wordElement.className = 'speech-bubble-highlight';
+      wordElement.textContent = foundWord.eng;
+      
+      const meaningElement = document.createElement('p');
+      meaningElement.textContent = `뜻: ${foundWord.kor}`;
+      
+      content.appendChild(wordElement);
+      content.appendChild(meaningElement);
   } else {
-    // 단어가 배열에 존재하지 않으면, 해당 메시지를 표시합니다.
-    searchWordResult.textContent = "리스트에 없는 단어 입니다.";
+      // 단어가 존재하지 않는 경우
+      content.textContent = "리스트에 없는 단어입니다.";
+      content.classList.add('error-message');
+      // 또는 더 간단히
+      // content.style.color = '#ef4444';
   }
-});
 
+  container.appendChild(content);
+  
+  // 기존 결과를 지우고 새로운 말풍선을 추가
+  searchWordResult.innerHTML = '';
+  searchWordResult.appendChild(container);
+  
+  // 입력 필드 초기화
+  searchWordInput.value = '';
+});
+//////
 //영어 단어 시험
 startEngQuizBtn.addEventListener('click', () => {
   questionLanguage = 'eng';

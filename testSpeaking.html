@@ -1,0 +1,41 @@
+<!--testSpeaking.html-->
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="testSpeaking.css" />
+    <title>English Speaking Test Quiz</title>
+  </head>
+  <body>
+    <h1>English Speaking Test</h1>
+    <div id="buttons-container">
+      <button id="engQuiz">영어 회화 맞추기</button>
+      <button id="korQuiz">한글 회화 맞추기</button>
+      <div id="searchPhrase-container">
+        <input type="text" id="searchPhrase-input" placeholder="회화 문구 입력" />
+        <button id="searchPhrase-btn">문구 찾아보기</button>
+      </div>
+      <p id="searchPhrase-result"></p>
+    </div>
+    <!--문제 화면-->
+    <div id="quiz-container" style="display: none">
+      <div id="question-container">
+        <h2 id="question-number"></h2>
+        <p id="question"></p>
+        <!--옵션 버튼-->
+        <div id="options-container"></div>
+        <button id="endQuiz">테스트 종료</button>
+      </div>
+      <!--결과 화면-->
+      <div id="result-container" style="display: none">
+        <h2>결과</h2>
+        <p id="result-text"></p>
+        <button id="restart-btn">다시 시작</button>
+        <button id="wrongPhrase-btn">틀린 문구 보기</button>
+      </div>
+    </div>
+    <script src="testSpeaking.js"></script>
+  </body>
+</html>
