@@ -1,4 +1,3 @@
-// testWord.js
 const questionNumber = document.getElementById('question-number');
 const question = document.getElementById('question');
 const optionsContainer = document.getElementById('options-container');
@@ -14,17 +13,15 @@ const resultText = document.getElementById('result-text');
 const restartBtn = document.getElementById('restart-btn');
 const wrongWordBtn = document.getElementById('wrongWord-btn');
 
-// '단어 찾아보기' 버튼과 입력 필드, 결과 표시 영역을 찾는다.
 const searchWordBtn = document.getElementById('searchWord-btn');
 const searchWordInput = document.getElementById('searchWord-input');
 const searchWordResult = document.getElementById('searchWord-result');
 
-
-let currentQuestionIndex = 0; //문제 번호
+let currentQuestionIndex = 0;
 let score = 0;
-let questionLanguage; //영어 or 한글
-let wrongWords = []; // 틀린 단어들을 저장할 배열 추가
-let attemptedQuestions = 0; // 시도한 문제 수
+let questionLanguage;
+let wrongWords = [];
+let attemptedQuestions = 0;
 let wordList = [];
 
 // JSON 데이터 불러오기
@@ -37,22 +34,27 @@ fetch('testWordData.json')
     console.error('Error loading the word data:', error);
   });
 
-
-///////
+  
 // '단어 찾아보기' 버튼 클릭 이벤트 리스너
 searchWordBtn.addEventListener('click', function() {
-  const inputWord = searchWordInput.value.trim(); // 앞뒤 공백 제거
-  const foundWord = wordList.find(word => word.eng.toLowerCase() === inputWord.toLowerCase());
+  const inputWord = searchWordInput.value.trim().toLowerCase(); // 앞뒤 공백 및 대소문자 구분 제거
+
+  // 사용자가 입력한 알파벳이 포함된 단어 찾기
+  const foundWords = wordList.filter(word => 
+    word.eng.toLowerCase().includes(inputWord) || 
+    word.kor.includes(inputWord)
+  );
 
   // 말풍선 컨테이너를 생성하고 스타일을 적용
   const container = document.createElement('div');
   container.className = 'speech-bubble';
-  
+
   const content = document.createElement('div');
   content.className = 'speech-bubble-content';
 
-  if (foundWord) {
-      // 단어가 존재하는 경우
+  if (foundWords.length > 0) {
+    // 단어가 존재하는 경우
+    foundWords.forEach(foundWord => {
       const wordElement = document.createElement('span');
       wordElement.className = 'speech-bubble-highlight';
       wordElement.textContent = foundWord.eng;
@@ -62,12 +64,11 @@ searchWordBtn.addEventListener('click', function() {
       
       content.appendChild(wordElement);
       content.appendChild(meaningElement);
+    });
   } else {
-      // 단어가 존재하지 않는 경우
-      content.textContent = "리스트에 없는 단어입니다.";
-      content.classList.add('error-message');
-      // 또는 더 간단히
-      // content.style.color = '#ef4444';
+    // 단어가 존재하지 않는 경우
+    content.textContent = "리스트에 없는 단어입니다.";
+    content.classList.add('error-message');
   }
 
   container.appendChild(content);
@@ -79,24 +80,23 @@ searchWordBtn.addEventListener('click', function() {
   // 입력 필드 초기화
   searchWordInput.value = '';
 });
-//////
-//영어 단어 시험
+
+// 영어 단어 시험
 startEngQuizBtn.addEventListener('click', () => {
   questionLanguage = 'eng';
   quizContainer.style.display = 'block';
   initQuiz();
 });
 
-//한글 단어 시험
+// 한글 단어 시험
 startKorQuizBtn.addEventListener('click', () => {
   questionLanguage = 'kor';
   quizContainer.style.display = 'block';
   initQuiz();
 });
 
-//종료 버튼
+// 종료 버튼
 endQuizBtn.addEventListener('click', () => {
-  // 마지막 문제에 대한 처리를 위해 체크 로직 추가
   if (currentQuestionIndex === wordList.length - 1) {
     checkAnswer(document.querySelector('button[type="button"]').textContent.split('. ')[1]);
   }
@@ -105,7 +105,7 @@ endQuizBtn.addEventListener('click', () => {
   showResult();
 });
 
-//셔플
+// 셔플
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -115,20 +115,19 @@ function shuffleArray(array) {
 
 function initQuiz() {
   shuffleArray(wordList);
-  //초기화
   currentQuestionIndex = 0;
   attemptedQuestions = 0;
   displayQuestion();
 }
 
-//단어 생성
+// 단어 생성
 function displayQuestion() {
   buttonMaker();
   questionNumber.innerText = `# ${currentQuestionIndex + 1}`;
   if (questionLanguage === 'eng') {
     question.innerText = `${wordList[currentQuestionIndex].eng}\n다음 중 올바른 뜻을 선택하세요.`;
   } else {
-    question.innerText = `${wordList[currentQuestionIndex].kor}\n다음 중 올바른 뜻을 선택하세요.`;
+    question.innerText = `${wordList[currentQuestionIndex].kor}\n다음 중 올바른 표현을 선택하세요.`;
   }
   optionsContainer.style.display = 'block';
 }
@@ -149,13 +148,12 @@ function buttonMaker() {
   optionsContainer.innerHTML = buttonsHTML;
 }
 
-//옵션을 셔플
+// 옵션 셔플
 function shuffleOptions(correctAnswer, allAnswers) {
   let incorrectAnswers = allAnswers
     .map((word) => (questionLanguage === 'eng' ? word.kor : word.eng))
     .filter((word) => word !== correctAnswer);
   let sortedOptions = [];
-  //사지선다
   for (let i = 0; i < 3; i++) {
     const randomIndex = Math.floor(Math.random() * incorrectAnswers.length);
     sortedOptions.push(incorrectAnswers[randomIndex]);
@@ -176,12 +174,11 @@ function nextQuestion() {
   }
 }
 
-//체점 결과
+// 체점 결과
 function showResult() {
   optionsContainer.style.display = 'none';
   question.style.display = 'none';
 
-  // attemptedQuestions 사용하여 정확한 계산 수행
   let resultPercentage = (score / attemptedQuestions) * 100;
 
   resultText.innerText = `${attemptedQuestions}문제 중에 ${score}개를 맞혔습니다. 점수는 ${resultPercentage.toFixed(
@@ -191,10 +188,10 @@ function showResult() {
   resultContainer.style.display = 'block';
 }
 
-//다시 시작 버튼 이벤트
+// 다시 시작 버튼 이벤트
 restartBtn.addEventListener('click', () => {
   score = 0;
-  wrongWords = []; // 틀린 단어 목록을 초기화
+  wrongWords = [];
   resultContainer.style.display = 'none';
   question.style.display = '';
   endQuizBtn.style.display = '';
@@ -205,7 +202,7 @@ restartBtn.addEventListener('click', () => {
 wrongWordBtn.addEventListener('click', showWrongWords);
 
 // 정답 판별
-function checkAnswer (answer) {
+function checkAnswer(answer) {
   attemptedQuestions++;
   if (
     answer ===
@@ -213,32 +210,30 @@ function checkAnswer (answer) {
       ? wordList[currentQuestionIndex].kor
       : wordList[currentQuestionIndex].eng)
   ) {
-    score++
-    nextQuestion()
+    score++;
+    nextQuestion();
   } else {
-    // 틀린 단어를 wrongWords 배열에 추가하는 로직
     wrongWords.push(wordList[currentQuestionIndex]);
 
-
-    let answerDisplay = document.createElement('div')
-    answerDisplay.setAttribute('id', 'answer-display')
+    let answerDisplay = document.createElement('div');
+    answerDisplay.setAttribute('id', 'answer-display');
     answerDisplay.innerText = `오답! 정답은: ${
       questionLanguage === 'eng'
         ? wordList[currentQuestionIndex].kor
         : wordList[currentQuestionIndex].eng
-    }`
+    }`;
 
-    optionsContainer.style.display = 'none'
-    question.appendChild(answerDisplay)
+    optionsContainer.style.display = 'none';
+    question.appendChild(answerDisplay);
 
-    let nextButton = document.createElement('button')
-    nextButton.innerText = '다음 문제'
+    let nextButton = document.createElement('button');
+    nextButton.innerText = '다음 문제';
     
     nextButton.addEventListener('click', () => {
-      nextQuestion()
-    })
+      nextQuestion();
+    });
 
-    question.appendChild(nextButton)
+    question.appendChild(nextButton);
   }
 }
 
