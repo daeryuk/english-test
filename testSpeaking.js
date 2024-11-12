@@ -26,7 +26,7 @@ let attemptedQuestions = [];
 let phraseList = [];
 
 // JSON 데이터 불러오기
-fetch('testSpeakingData.json')
+fetch('testSpeakingdata.json')
   .then(response => response.json())
   .then(data => {
     phraseList = data;
