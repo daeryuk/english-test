@@ -1,37 +1,109 @@
 // testSpeaking.js
 const phraseList = [
-  { eng: "Just what doctor ordered", kor: "정확히 원하는 대로야" },
-  { eng: "Off and on", kor: "가끔요" },
-  { eng: "No dice", kor: "안 돼" },
-  { eng: "Do on the fly", kor: "즉흥적으로 하자, 상황봐서" },
-  { eng: "To what do i owe the pleasure?", kor: "무슨 일로 오셨어요?" },
-  { eng: "Rise and shine", kor: "일어나세요" },
-  { eng: "And vice versa", kor: "그 반대도 마찬가지야" },
-  { eng: "Suck it up", kor: "참아내 봐, 견뎌 봐" },
-  { eng: "replete with things to see", kor: "볼거리로 가득한" },
-  { eng: "It's under the radar", kor: "눈에 띄지 않아" },
+  { 
+    eng: "Just what doctor ordered", 
+    kor: "정확히 원하는 대로야" 
+  },
+  { 
+    eng: "Off and on", 
+    kor: "가끔요" 
+  },
+  { 
+    eng: "No dice", 
+    kor: "안 돼" 
+  },
+  { 
+    eng: "Do on the fly", 
+    kor: "즉흥적으로 하자, 상황봐서" 
+  },
+  { 
+    eng: "To what do i owe the pleasure?", 
+    kor: "무슨 일로 오셨어요?" 
+  },
+  { 
+    eng: "Rise and shine", 
+    kor: "일어나세요" 
+  },
+  { 
+    eng: "And vice versa", 
+    kor: "그 반대도 마찬가지야" 
+  },
+  { 
+    eng: "Suck it up", 
+    kor: "참아내 봐, 견뎌 봐" 
+  },
+  { 
+    eng: "replete with things to see", 
+    kor: "볼거리로 가득한" 
+  },
+  { 
+    eng: "It's under the radar", 
+    kor: "눈에 띄지 않아" 
+  },
   {
     eng: "If you really upset the apple cart",
     kor: "정말로 계획을 망치고 싶다면",
   },
-  { eng: "It is arid", kor: "무미건조해" },
-  { eng: "How droll", kor: "우스꽝스러워요" },
-  { eng: "Into uncharted waters", kor: "미지의 영역으로" },
-  { eng: "I'm bewildered", kor: "나 혼란스러워" },
-  { eng: "I'm tickled pink", kor: "완전 신나" },
-  { eng: "Don't flatter yourself", kor: "너무 자만하지마" },
-  { eng: "It's whimsical", kor: "기발하다" },
-  { eng: "You can't fathom", kor: "넌 이해할 수 없을거야" },
-  { eng: "Take it with grain of salt", kor: "적당히 걸러서 들어" },
-  { eng: "What a quaint town", kor: "참 고풍스러운 마을이네" },
-  { eng: "You tossed and turned all night", kor: "밤새 뒤척였어" },
+  { 
+    eng: "It is arid", 
+    kor: "무미건조해" 
+  },
+  { 
+    eng: "How droll", 
+    kor: "우스꽝스러워요" 
+  },
+  { 
+    eng: "Into uncharted waters", 
+    kor: "미지의 영역으로" 
+  },
+  { 
+    eng: "I'm bewildered", 
+    kor: "나 혼란스러워" 
+  },
+  { 
+    eng: "I'm tickled pink", 
+    kor: "완전 신나" 
+  },
+  { 
+    eng: "Don't flatter yourself", 
+    kor: "너무 자만하지마" 
+  },
+  { 
+    eng: "It's whimsical", 
+    kor: "기발하다" 
+  },
+  { 
+    eng: "You can't fathom", 
+    kor: "넌 이해할 수 없을거야" 
+  },
+  { 
+    eng: "Take it with grain of salt",
+    kor: "적당히 걸러서 들어" 
+  },
+  { 
+    eng: "What a quaint town",
+    kor: "참 고풍스러운 마을이네" 
+  },
+  { 
+    eng: "You tossed and turned all night", 
+    kor: "밤새 뒤척였어" 
+  },
   {
     eng: "How are you being so nonchalant about this?",
     kor: "어떻게 이 일에 대해 그렇게 무관심할 수가 있어?",
   },
-  { eng: "I turned a blind eye", kor: "난 못 본체 했어" },
-  { eng: "You're fastidious", kor: "까다롭다" },
-  { eng: "Maybe touch base around 8:15?", kor: "8시15분쯤에 다시 연락할까?" },
+  { 
+    eng: "I turned a blind eye", 
+    kor: "난 못 본체 했어" 
+  },
+  { 
+    eng: "You're fastidious", 
+    kor: "까다롭다" 
+  },
+  { 
+    eng: "Maybe touch base around 8:15?", 
+    kor: "8시15분쯤에 다시 연락할까?" 
+  },
   {
     eng: "in the burgeoning video market",
     kor: "급속히 성장하는 비디오 시장에서",
@@ -40,164 +112,530 @@ const phraseList = [
     eng: "It was touch and go",
     kor: "불확실한 상황이야, 위태로워, 아슬아슬했어",
   },
-  { eng: "Might tip the scales", kor: "균형을 깨뜨릴 수 있어" },
-  { eng: "Im humiliated", kor: "수치스러워" },
-  { eng: "I consider noteworthy", kor: "주목할 만하다고 생각해" },
+  { 
+    eng: "Might tip the scales", 
+    kor: "균형을 깨뜨릴 수 있어" 
+  },
+  { 
+    eng: "Im humiliated", 
+    kor: "수치스러워" 
+  },
+  { 
+    eng: "I consider noteworthy", 
+    kor: "주목할 만하다고 생각해" 
+  },
   {
     eng: "I feel that they were just trying to be tongue in cheek",
     kor: "그들은 그저 농담조로 말하려고 했던 것 같아",
   },
-  { eng: "For a while", kor: "잠깐" },
+  { 
+    eng: "For a while", 
+    kor: "잠깐" 
+  },
   {
     eng: "I dont know if it's cause I'm getting older",
     kor: "나이가 들어서 그런지 모르겠는디",
   },
-  { eng: "Im on board", kor: "나도 동의해" },
-  { eng: "Dont emboril me", kor: "날 휘말리게 하지 마" },
-  { eng: "Im going to throw the book at you", kor: "너에게 엄벌을 내릴거야" },
-  { eng: "Too esoteric", kor: "너무 난해한" },
-  { eng: "To each his own", kor: "각자의 취향대로" },
-  { eng: "It's ineffable", kor: "말로 표현할 수 없어" },
-  { eng: "Tip of the iceberg", kor: "빙산의 일각이야" },
-  { eng: "Point taken", kor: "네 말이 맞아" },
-  { eng: "There was ample parking", kor: "주차 공간은 충분했어" },
+  { 
+    eng: "Im on board", 
+    kor: "나도 동의해" 
+  },
+  { 
+    eng: "Dont emboril me", 
+    kor: "날 휘말리게 하지 마" 
+  },
+  { 
+    eng: "Im going to throw the book at you", 
+    kor: "너에게 엄벌을 내릴거야" 
+  },
+  { 
+    eng: "Too esoteric", 
+    kor: "너무 난해한" 
+  },
+  { 
+    eng: "To each his own", 
+    kor: "각자의 취향대로" 
+  },
+  { 
+    eng: "It's ineffable", 
+    kor: "말로 표현할 수 없어" 
+  },
+  { 
+    eng: "Tip of the iceberg",
+    kor: "빙산의 일각이야"
+  },
+  { 
+    eng: "Point taken", 
+    kor: "네 말이 맞아" 
+  },
+  { 
+    eng: "There was ample parking", 
+    kor: "주차 공간은 충분했어" 
+  },
   {
     eng: "We're just doing a little belt-tightening",
     kor: "우리는 그저 약간 절약을 하고 있는거야",
   },
-  { eng: "Judicious", kor: "신중한" },
-  { eng: "Debilitating", kor: "쇠약하게 만드는" },
-  { eng: "Until the flames abated", kor: "불길이 약해질 때까지" },
-  { eng: "You've actually tided the knot", kor: "너 진짜로 결혼했구나" },
-  { eng: "Great work", kor: "수고했어" },
-  { eng: "Hit me up", kor: "연락해요" },
-  { eng: "They have great rapport", kor: "그들은 친밀한 관계를 맺고 있어" },
-  { eng: "You tickle my fancy", kor: "내 흥미를 자극하네" },
-  { eng: "We might have hooked up", kor: "우리 사귄 적이 있을지도 모르지" },
-  { eng: "Versatile", kor: "다재다능해" },
-  { eng: "Furtive", kor: "은밀한" },
-  { eng: "They're throwing in the towel", kor: "그들은 패배를 인정하고 있어" },
-  { eng: "What a bummer", kor: "실망이야" },
-  { eng: "He's very gregarious", kor: "그는 매우 사교적이야" },
-  { eng: "Throw caution to the wind", kor: "과감하게 행동해" },
-  { eng: "Through thick and thin", kor: "좋을 때나 안 좋을 때나" },
-  { eng: "Sanguine", kor: "낙관적인, 명랑한" },
-  { eng: "He's three sheets to the wind", kor: "저 사람 완전 고주망태네" },
-  { eng: "It is what it is", kor: "어쩔 수 없지, 다 그런거지" },
-  { eng: "Be wary headed in", kor: "들어갈 때 조심해" },
-  { eng: "just being wary", kor: "그냥 조심하는거야" },
-  { eng: "This too shall pass", kor: "이 또한 지나가리" },
-  { eng: "Having an office crush", kor: "회사에서 짝사랑" },
-  { eng: "He was obnoxious", kor: "그는 정말 불쾌했어" },
-  { eng: "Thread lightly", kor: "조심스럽게 행둥해" },
-  { eng: "You get myopic", kor: "넌 근시안적이야" },
-  { eng: "You're just so prosaic", kor: "넌 그냥 너무 진부해" },
-  { eng: "Myriad of duties", kor: "수많은 의무들" },
-  { eng: "It's pervasive and insidious", kor: "그것은 만연하고 은밀하다" },
-  { eng: "Brevity is the soul of wit", kor: "간결성은 지혜의 본질이야" },
-  { eng: "I'm in a hurry", kor: "난 지금 바빠" },
-  { eng: "Help yourself", kor: "맘껏 드세요" },
-  { eng: "Sort of a prodigy", kor: "일종의 천재지" },
-  { eng: "There's your pep talk", kor: "너에게 주는 격려지" },
-  { eng: "Thick as thieves, these two", kor: "이 둘은 진짜 친해" },
-  { eng: "Get the picture", kor: "이해했어?" },
-  { eng: "The whole nine yards", kor: "모든 것들, 완전한 것" },
-  { eng: "The sky is the limit", kor: "하지 못할 것은 없어" },
-  { eng: "The more, the merrier", kor: "더 많을수록 좋지" },
-  { eng: "The icing on the cake", kor: "금상첨화" },
-  { eng: "Im mortified", kor: "당황스럽다" },
-  { eng: "Im gutted", kor: "처참했다" },
-  { eng: "The handwriting's on the wall", kor: "불길한 징조가 뚜렷하다" },
-  { eng: "I turned the table", kor: "상황을 역전시켰어" },
-  { eng: "I dont know, wistfully", kor: "몰라 아쉽게도, 아련한" },
-  { eng: "Elucidate that for me", kor: "그것을 명확히 설명해줘" },
-  { eng: "The buck stops with me", kor: "모든 책임은 제가 집니다" },
-  { eng: "The best of both worlds", kor: "두 마리 토끼를 다 잡는거지" },
-  { eng: "Knock it off", kor: "그만해" },
-  { eng: "Banal", kor: "진부한" },
-  { eng: "The ball is in your court", kor: "결정권은 너한테 있어." },
-  { eng: "That's a steal", kor: "횡재다, 완전 거저다" },
-  { eng: "Incessant self regard", kor: "끊임없는 자기 존중" },
-  { eng: "This will vindicate me", kor: "이것이 나의 무죄를 입증할거야" },
-  { eng: "That's a very tall order", kor: "어려운 요구야" },
-  { eng: "Epitome", kor: "완벽한 본보기" },
-  { eng: "Let's talk turkey here", kor: "솔직하게 얘기해보죠" },
-  { eng: "Talk of the town", kor: "장안의 화제" },
-  { eng: "Acumen", kor: "판단력" },
-  { eng: "Toe the line", kor: "규칙, 지시를 따르세요" },
-  { eng: "Just take the plunge", kor: "그냥 과감히 실행해" },
-  { eng: "Buzz off", kor: "꺼져" },
-  { eng: "Always take the high road", kor: "항상 도덕적으로 올바른 길을 가라" },
-  { eng: "This takes the cake", kor: "이번 건 정말 최고야" },
-  { eng: "No backsies", kor: "무르기 없기" },
-  { eng: "Rancor", kor: "원한" },
-  { eng: "You're a natural", kor: "너 타고났다" },
+  { 
+    eng: "Judicious", 
+    kor: "신중한" 
+  },
+  { 
+    eng: "Debilitating", 
+    kor: "쇠약하게 만드는" 
+  },
+  { 
+    eng: "Until the flames abated", 
+    kor: "불길이 약해질 때까지" 
+  },
+  { 
+    eng: "You've actually tided the knot", 
+    kor: "너 진짜로 결혼했구나" 
+  },
+  { 
+    eng: "Great work", 
+    kor: "수고했어" 
+  },
+  { 
+    eng: "Hit me up", 
+    kor: "연락해요" 
+  },
+  { 
+    eng: "They have great rapport", 
+    kor: "그들은 친밀한 관계를 맺고 있어" 
+  },
+  { 
+    eng: "You tickle my fancy",
+     kor: "내 흥미를 자극하네" 
+  },
+  { 
+    eng: "We might have hooked up", 
+    kor: "우리 사귄 적이 있을지도 모르지" 
+  },
+  { 
+    eng: "Versatile", 
+    kor: "다재다능해" 
+  },
+  { 
+    eng: "Furtive", 
+    kor: "은밀한" 
+  },
+  { 
+    eng: "They're throwing in the towel",
+    kor: "그들은 패배를 인정하고 있어" 
+  },
+  { 
+    eng: "What a bummer", 
+    kor: "실망이야" 
+  },
+  { 
+    eng: "He's very gregarious", 
+    kor: "그는 매우 사교적이야" 
+  },
+  { 
+    eng: "Throw caution to the wind", 
+    kor: "과감하게 행동해" 
+  },
+  { 
+    eng: "Through thick and thin", 
+    kor: "좋을 때나 안 좋을 때나" 
+  },
+  { 
+    eng: "Sanguine", 
+    kor: "낙관적인, 명랑한" 
+  },
+  { 
+    eng: "He's three sheets to the wind", 
+    kor: "저 사람 완전 고주망태네" 
+  },
+  { 
+    eng: "It is what it is", 
+    kor: "어쩔 수 없지, 다 그런거지" 
+  },
+  { 
+    eng: "Be wary headed in", 
+    kor: "들어갈 때 조심해"
+  },
+  { 
+    eng: "just being wary", 
+    kor: "그냥 조심하는거야" 
+  },
+  { 
+    eng: "This too shall pass", 
+    kor: "이 또한 지나가리" 
+  },
+  { 
+    eng: "Having an office crush", 
+    kor: "회사에서 짝사랑" 
+  },
+  { 
+    eng: "He was obnoxious", 
+    kor: "그는 정말 불쾌했어" 
+  },
+  { 
+    eng: "Thread lightly", 
+    kor: "조심스럽게 행둥해" 
+  },
+  { 
+    eng: "You get myopic", 
+    kor: "넌 근시안적이야" 
+  },
+  { 
+    eng: "You're just so prosaic", 
+    kor: "넌 그냥 너무 진부해" 
+  },
+  { 
+    eng: "Myriad of duties", 
+    kor: "수많은 의무들" 
+  },
+  { 
+    eng: "It's pervasive and insidious", 
+    kor: "그것은 만연하고 은밀하다" 
+  },
+  { 
+    eng: "Brevity is the soul of wit", 
+    kor: "간결성은 지혜의 본질이야" 
+  },
+  { 
+    eng: "I'm in a hurry", 
+    kor: "난 지금 바빠" 
+  },
+  { 
+    eng: "Help yourself", 
+    kor: "맘껏 드세요" 
+  },
+  { 
+    eng: "Sort of a prodigy", 
+    kor: "일종의 천재지" 
+  },
+  { 
+    eng: "There's your pep talk", 
+    kor: "너에게 주는 격려지" 
+  },
+  { 
+    eng: "Thick as thieves, these two", 
+    kor: "이 둘은 진짜 친해" 
+  },
+  { 
+    eng: "Get the picture", 
+    kor: "이해했어?" 
+  },
+  { 
+    eng: "The whole nine yards", 
+    kor: "모든 것들, 완전한 것" 
+  },
+  { 
+    eng: "The sky is the limit", 
+    kor: "하지 못할 것은 없어" 
+  },
+  { 
+    eng: "The more, the merrier", 
+    kor: "더 많을수록 좋지" 
+  },
+  { 
+    eng: "The icing on the cake", 
+    kor: "금상첨화" 
+  },
+  {
+    eng: "Im mortified", 
+    kor: "당황스럽다" 
+  },
+  { 
+    eng: "Im gutted", 
+    kor: "처참했다" 
+  },
+  { 
+    eng: "The handwriting's on the wall", 
+    kor: "불길한 징조가 뚜렷하다" 
+  },
+  { 
+    eng: "I turned the table", 
+    kor: "상황을 역전시켰어" 
+  },
+  { 
+    eng: "I dont know, wistfully", 
+    kor: "몰라 아쉽게도, 아련한" 
+  },
+  { 
+    eng: "Elucidate that for me", 
+    kor: "그것을 명확히 설명해줘" 
+  },
+  { 
+    eng: "The buck stops with me", 
+    kor: "모든 책임은 제가 집니다" 
+  },
+  { 
+    eng: "The best of both worlds", 
+    kor: "두 마리 토끼를 다 잡는거지" 
+  },
+  { 
+    eng: "Knock it off", 
+    kor: "그만해" 
+  },
+  { 
+    eng: "Banal", 
+    kor: "진부한" 
+  },
+  { 
+    eng: "The ball is in your court", 
+    kor: "결정권은 너한테 있어." 
+  },
+  { 
+    eng: "That's a steal", 
+    kor: "횡재다, 완전 거저다"
+  },
+  { 
+    eng: "Incessant self regard", 
+    kor: "끊임없는 자기 존중" 
+  },
+  { 
+    eng: "This will vindicate me", 
+    kor: "이것이 나의 무죄를 입증할거야" 
+  },
+  { 
+    eng: "That's a very tall order", 
+    kor: "어려운 요구야" 
+  },
+  { 
+    eng: "Epitome", 
+    kor: "완벽한 본보기" 
+  },
+  { 
+    eng: "Let's talk turkey here", 
+    kor: "솔직하게 얘기해보죠" 
+  },
+  { 
+    eng: "Talk of the town", 
+    kor: "장안의 화제" 
+  },
+  { 
+    eng: "Acumen", 
+    kor: "판단력" 
+  },
+  { 
+    eng: "Toe the line", 
+    kor: "규칙, 지시를 따르세요" 
+  },
+  { 
+    eng: "Just take the plunge", 
+    kor: "그냥 과감히 실행해" 
+  },
+  { 
+    eng: "Buzz off", 
+    kor: "꺼져" 
+  },
+  { 
+    eng: "Always take the high road", 
+    kor: "항상 도덕적으로 올바른 길을 가라" 
+  },
+  { 
+    eng: "This takes the cake", 
+    kor: "이번 건 정말 최고야" 
+  },
+  { 
+    eng: "No backsies", 
+    kor: "무르기 없기" 
+  },
+  { 
+    eng: "Rancor", 
+    kor: "원한" 
+  },
+  { 
+    eng: "You're a natural", 
+    kor: "너 타고났다" 
+  },
   {
     eng: "I'm taking the bull by horns",
     kor: "난 과감하게 문제에 맞서고 있어",
   },
-  { eng: "Bite me", kor: "꺼져" },
-  { eng: "Succinct", kor: "간단명료한" },
-  { eng: "You can take to the bank", kor: "그건 믿어도 돼" },
-  { eng: "I had a really big crush on you", kor: "전 당신에게 정말 빠졌어요" },
-  { eng: "Lucid", kor: "또렷한" },
-  { eng: "Let me take a stab at it", kor: "내가 한번 시도해볼게" },
-  { eng: "I'm keeping it casual tonight", kor: "오늘 밤은 편하게 지내려고" },
-  { eng: "keep it casual", kor: "자연스럽게 행동해" },
-  { eng: "You can just be yourself", kor: "나 다워야지" },
-  { eng: "I rescind it", kor: "난 그것을 취소해" },
-  { eng: "Can I take the rain check", kor: "다음으로 미뤄도 되나?" },
-  { eng: "Speaking of which", kor: "말이 나와서 하는건데" },
-  { eng: "Adroit", kor: "능숙한" },
+  { 
+    eng: "Bite me", 
+    kor: "꺼져" 
+  },
+  { 
+    eng: "Succinct", 
+    kor: "간단명료한" 
+  },
+  { 
+    eng: "You can take to the bank", 
+    kor: "그건 믿어도 돼" 
+  },
+  { 
+    eng: "I had a really big crush on you", 
+    kor: "전 당신에게 정말 빠졌어요" 
+  },
+  { 
+    eng: "Lucid", 
+    kor: "또렷한" 
+  },
+  { 
+    eng: "Let me take a stab at it", 
+    kor: "내가 한번 시도해볼게" 
+  },
+  {
+    eng: "I'm keeping it casual tonight", 
+    kor: "오늘 밤은 편하게 지내려고"
+  },
+  { 
+    eng: "keep it casual", 
+    kor: "자연스럽게 행동해" 
+  },
+  { 
+    eng: "You can just be yourself", 
+    kor: "나 다워야지" 
+  },
+  { 
+    eng: "I rescind it", 
+    kor: "난 그것을 취소해" 
+  },
+  { 
+    eng: "Can I take the rain check", 
+    kor: "다음으로 미뤄도 되나?" 
+  },
+  { 
+    eng: "Speaking of which", 
+    kor: "말이 나와서 하는건데" 
+  },
+  { 
+    eng: "Adroit", 
+    kor: "능숙한" 
+  },
   {
     eng: "They're taking the nation by storm",
     kor: "그들은 전국을 강타하고 있어",
   },
-  { eng: "I have not given credence to", kor: "그것을 신뢰하지 않았어." },
-  { eng: "Try taking the road less traveled", kor: "덜 선택된 길을 가봐" },
-  { eng: "Inept", kor: "솜씨 없는" },
-  { eng: "Swing for the fences", kor: "한방을 노리는거" },
-  { eng: "Goes in one ear and the other", kor: "한 귀로 듣고 한 귀로 흘리지" },
-  { eng: "Don't be vulgar", kor: "저속허게 굴지마" },
+  { 
+    eng: "I have not given credence to", 
+    kor: "그것을 신뢰하지 않았어." 
+  },
+  { 
+    eng: "Try taking the road less traveled", 
+    kor: "덜 선택된 길을 가봐" 
+  },
+  { 
+    eng: "Inept", 
+    kor: "솜씨 없는" 
+  },
+  { 
+    eng: "Swing for the fences", 
+    kor: "한방을 노리는거" 
+  },
+  { 
+    eng: "Goes in one ear and the other", 
+    kor: "한 귀로 듣고 한 귀로 흘리지" 
+  },
+  { 
+    eng: "Don't be vulgar", 
+    kor: "저속허게 굴지마" 
+  },
   {
     eng: "I dont have much of a sweet tooth",
     kor: "난 단 것을 별로 안 좋아해",
   },
-  { eng: "No bigge", kor: "별 거 아니에요, 걱정할 거 없어." },
-  { eng: "I can only surmise", kor: "난 그냥 추측할 뿐이야" },
-  { eng: "Throughout the years", kor: "세월이 흐르면서" },
-  { eng: "flashy", kor: "화려한" },
-  { eng: "gaudy", kor: "(색깔)야한.천박한" },
-  { eng: "flamboyant", kor: "대담한" },
-  { eng: "I dont capitulate", kor: "나는 굴복하지 않아." },
+  { 
+    eng: "No bigge", 
+    kor: "별 거 아니에요, 걱정할 거 없어." 
+  },
+  { 
+    eng: "I can only surmise", 
+    kor: "난 그냥 추측할 뿐이야"
+  },
+  { 
+    eng: "Throughout the years", 
+    kor: "세월이 흐르면서" 
+  },
+  { 
+    eng: "flashy", 
+    kor: "화려한" 
+  },
+  { 
+    eng: "gaudy", 
+    kor: "(색깔)야한.천박한" 
+  },
+  { 
+    eng: "flamboyant", 
+    kor: "대담한" 
+  },
+  { 
+    eng: "I dont capitulate", 
+    kor: "나는 굴복하지 않아." 
+  },
   {
     eng: "We don't sweep anything under the rug",
     kor: "우리는 아무것도 숨기지 않아요",
   },
-  { eng: "Called in sick", kor: "병가를 냈다" },
-  { eng: "I'm sweating bullets every day", kor: "전 매일 땀을 비 오듯 흘려요" },
-  { eng: "Level with me", kor: "솔직하게 말해" },
-  { eng: "Swallow your pride", kor: "자존심을 버려" },
-  { eng: "Particularly", kor: "특히" },
-  { eng: "Survival of the fittest", kor: "적자생존" },
-  { eng: "Let's hit the hay", kor: "자러 가자" },
-  { eng: "Also produces euphoria", kor: "또한 행복감을 만들어내요" },
-  { eng: "Im gonna shoot from the hip", kor: "즉흥적으로 말할게요" },
+  { 
+    eng: "Called in sick", 
+    kor: "병가를 냈다" 
+  },
+  { 
+    eng: "I'm sweating bullets every day", 
+    kor: "전 매일 땀을 비 오듯 흘려요" 
+  },
+  { 
+    eng: "Level with me", 
+    kor: "솔직하게 말해" 
+  },
+  { 
+    eng: "Swallow your pride", 
+    kor: "자존심을 버려" 
+  },
+  { 
+    eng: "Particularly", 
+    kor: "특히" 
+  },
+  { 
+    eng: "Survival of the fittest", 
+    kor: "적자생존" 
+  },
+  { 
+    eng: "Let's hit the hay", 
+    kor: "자러 가자" 
+  },
+  { 
+    eng: "Also produces euphoria", 
+    kor: "또한 행복감을 만들어내요" 
+  },
+  { 
+    eng: "Im gonna shoot from the hip", 
+    kor: "즉흥적으로 말할게요" 
+  },
   {
     eng: "You could have asked for my number",
     kor: "제 번호를 물어볼 수도 있었겠죠",
   },
-  { eng: "Conundrum averted", kor: "난제를 회피했네" },
-  { eng: "Suck it up", kor: "버텨 봐" },
-  { eng: "And might be dubious", kor: "의심스러울 수도 있다" },
-  { eng: "And became the stuff of legend", kor: "전설적인 이야기가 되었지" },
-  { eng: "I'm swamped", kor: "나 겁나 바빠" },
+  { 
+    eng: "Conundrum averted", 
+    kor: "난제를 회피했네" 
+  },
+  { 
+    eng: "Suck it up",
+    kor: "버텨 봐" 
+  },
+  { 
+    eng: "And might be dubious", 
+    kor: "의심스러울 수도 있다" 
+  },
+  { 
+    eng: "And became the stuff of legend", 
+    kor: "전설적인 이야기가 되었지" 
+  },
+  { 
+    eng: "I'm swamped", 
+    kor: "나 겁나 바빠" 
+  },
   {
     eng: "Have you kept in touch over the years?",
     kor: "수년간 연락을 주고 받았나요?",
   },
-  { eng: "Human life is ephemeral", kor: "인간의 삶은 순간이다" },
-  { eng: "I'm stuck in a rut", kor: "난 틀에 박힌 삶이야" },
+  { 
+    eng: "Human life is ephemeral", 
+    kor: "인간의 삶은 순간이다" 
+  },
+  { 
+    eng: "I'm stuck in a rut", 
+    kor: "난 틀에 박힌 삶이야" 
+  },
   {
     "eng": "If you're trying to be ingratiating",
     "kor": "만악 당신이 환심을 사려고 한다면"
