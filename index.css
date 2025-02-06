@@ -71,6 +71,15 @@ h1 {
     transform: translateY(-2px);
 }
 
+.word-card {
+    background: #4c74af;
+}
+
+.word-card:hover {
+    background: #5380c2;
+    transform: translateY(-2px);
+}
+
 @media (max-width: 480px) {
     .container {
         padding: 1rem;
