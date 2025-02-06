@@ -19,12 +19,9 @@ body {
 
 .container {
     width: 90%;
-    max-width: 1000px;
+    max-width: 600px;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem;
+    margin: 0 auto;
 }
 
 .controls {
@@ -50,19 +47,93 @@ body {
 }
 
 .card-container {
-    perspective: 1000px;
     margin: 2rem auto;
-    width: 500px;
-    height: 300px;
+    width: 100%;
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: var(--surface);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
 }
 
+.card {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    background: #fff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-counter {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1rem;
+    color: var(--text);
+    opacity: 0.5;
+}
+
+.card-content {
+    width: 100%;
+    text-align: center;
+}
+
+.word {
+    font-size: 2.5rem;
+    color: var(--text);
+    margin: 0;
+}
+
+.sound-btn {
+    margin-top: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--primary);
+    transition: all 0.3s ease;
+}
+
+.sound-btn:hover {
+    color: var(--primary-dark);
+    transform: scale(1.1);
+}
+
+/* 한글 뜻 슬라이드 애니메이션 (기본: 약간 아래 숨김) */
+.meaning {
+    font-size: 1.5rem;
+    color: var(--text);
+    margin-top: 1.5rem;
+    text-align: center;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* 카드 클릭 시 "show" 클래스가 추가되면 한글 뜻이 제자리로 슬라이드 */
+.meaning.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* 네비게이션 컨트롤 */
 .navigation-controls {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 4rem;
-    margin: 2rem 0;
+    gap: 2rem;
+    margin-top: 1rem;
 }
 
 .nav-arrow {
@@ -84,99 +155,175 @@ body {
     transform: scale(0.95);
 }
 
-.home-btn {
-    padding: 0.8rem 2rem;
-    text-decoration: none;
-    border: none;
-    border-radius: 8px;
-    background: var(--primary);
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1.1rem;
+/* 번호 입력 폼 스타일 (카드 아래쪽 배치) */
+.jump-to-container {
     margin-top: 2rem;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
 
-.home-btn:hover {
+#jumpInput {
+    width: 120px;
+    padding: 8px;
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#jumpInput:focus {
+    border-color: var(--primary-dark);
+}
+
+#jumpBtn {
+    padding: 8px 16px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+#jumpBtn:hover {
+    background: var(--primary-dark);
+}
+
+.word-list-btn {
+    margin-top: 2rem;
+    padding: 0.8rem 2rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.word-list-btn:hover {
     background: var(--primary-dark);
     transform: translateY(-2px);
 }
 
-.card {
-    position: absolute;
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.6s;
-    cursor: pointer;
-    transform-origin: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
 }
 
-.card.flipped {
-    transform: rotateY(180deg);
-}
-
-.card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--surface);
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+.modal-content {
+    position: relative;
+    background: white;
+    margin: 2rem auto;
     padding: 1rem;
+    width: 90%;
+    max-width: 800px;
+    max-height: 80vh;
+    border-radius: 12px;
+    overflow: auto;
 }
 
-.card-back {
-    transform: rotateY(180deg);
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
 }
 
-.word, .meaning {
-    font-size: 1.5rem;
-    color: var(--text);
-    margin: 0;
-}
-
-.sound-btn {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
+.close-btn {
     background: none;
     border: none;
+    font-size: 1.5rem;
     cursor: pointer;
-    font-size: 1.2rem;
-    color: var(--primary);
-    transition: all 0.3s ease;
+    color: var(--text);
 }
 
-.sound-btn:hover {
-    color: var(--primary-dark);
-    transform: scale(1.1);
+#wordTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
 }
 
+#wordTable th, #wordTable td {
+    padding: 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+#wordTable th {
+    background: var(--primary);
+    color: white;
+}
+
+#wordTable tr:hover {
+    background: rgba(99, 102, 241, 0.1);
+    cursor: pointer;
+}
+
+/* 반응형 */
 @media (max-width: 768px) {
     .card-container {
-        width: 400px;
-        height: 250px;
+        width: 90%;
+        max-width: 500px;
+        height: 300px;
     }
+    .word {
+        font-size: 2rem;
+    }
+    .meaning {
+        font-size: 1.2rem;
+    }
+    .modal-content {
+        width: 95%;
+        margin: 1rem auto;
+    }
+    #wordTable th, #wordTable td {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+    #jumpInput {
+        width: 100px;
+        font-size: 0.9rem;
+    }
+    #jumpBtn {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.8rem;
+    }
+}
 
+@media (max-width: 480px) {
+    .card-container {
+        height: 200px;
+    }
+    .word {
+        font-size: 1.5rem;
+    }
+    .sound-btn {
+        font-size: 1.2rem;
+    }
     .nav-arrow {
-        font-size: 3rem;
-    }
-
-    .navigation-controls {
-        gap: 3rem;
+        font-size: 2.5rem;
     }
 }
 
 @media (max-width: 640px) {
     .card-container {
-        width: 300px;
-        height: 200px;
+        width: 280px;
+        height: 180px;
+        perspective: 600px;
     }
 
     .nav-arrow {

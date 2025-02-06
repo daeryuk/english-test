@@ -10,17 +10,16 @@
 <body>
     <div class="container">
         <h1>Word Card</h1>
-        <a href="index.html" class="home-btn">홈으로</a>
         <div class="card-container">
             <div class="card">
-                <div class="card-front">
+                <div class="card-counter">
+                    <span id="currentIndex">1</span> / <span id="totalWords">0</span>
+                </div>
+                <div class="card-content">
                     <p class="word"></p>
-                    <!--스피커-->
                     <button class="sound-btn">
                         <i class="fas fa-volume-up"></i>
                     </button>
-                </div>
-                <div class="card-back">
                     <p class="meaning"></p>
                 </div>
             </div>
@@ -32,6 +31,33 @@
             <button id="nextBtn" class="nav-arrow">
                 <i class="fas fa-circle-chevron-right"></i>
             </button>
+        </div>
+        <div class="jump-to-container">
+            <input type="number" id="jumpInput" placeholder="번호 입력" min="1">
+            <button id="jumpBtn">이동</button>
+        </div>
+        <button id="wordListBtn" class="word-list-btn">단어 리스트 보기</button>
+    </div>
+
+    <!-- 단어 리스트 모달 -->
+    <div id="wordListModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>단어 리스트</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <table id="wordTable">
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>영어</th>
+                            <th>한글</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
     </div>
     <script src="wordCard.js"></script>
