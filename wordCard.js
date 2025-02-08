@@ -16,8 +16,12 @@ const wordTable = document.getElementById('wordTable');
 let currentIndex = 0;
 let wordList = [];
 
+// URL 파라미터로 선택한 단어장 가져오기
+const urlParams = new URLSearchParams(window.location.search);
+const deck = urlParams.get('deck') || 'testWordData.json';
+
 // JSON 데이터 불러오기
-fetch('testWordData.json')
+fetch(deck)
     .then(response => response.json())
     .then(data => {
         wordList = data;
@@ -69,10 +73,18 @@ wordListBtn.addEventListener('click', () => {
     
     wordList.forEach((word, index) => {
         const row = document.createElement('tr');
+        let meaningContent = "";
+        if (typeof word.kor === "object") {
+            meaningContent = Object.keys(word.kor)
+                .map(pos => `<span class="pos-tag">${pos}</span>: ${word.kor[pos]}`)
+                .join("<br>");
+        } else {
+            meaningContent = word.kor;
+        }
         row.innerHTML = `
             <td>${index + 1}</td>
             <td>${word.eng}</td>
-            <td>${word.kor}</td>
+            <td>${meaningContent}</td>
         `;
         row.addEventListener('click', () => {
             currentIndex = index;
@@ -103,7 +115,16 @@ function displayWord() {
     
     const currentWord = wordList[currentIndex];
     wordElement.textContent = currentWord.eng;
-    meaningElement.textContent = currentWord.kor;
+    
+    // 한글 뜻이 객체이면 품사별로 강조 표시하여 보여주고, 문자열이면 그대로 표시
+    if (typeof currentWord.kor === "object") {
+        const meaningHTML = Object.keys(currentWord.kor).map(pos => {
+            return `<span class="pos-tag">${pos}</span>: ${currentWord.kor[pos]}`;
+        }).join("<br>");
+        meaningElement.innerHTML = meaningHTML;
+    } else {
+        meaningElement.textContent = currentWord.kor;
+    }
     updateCounter();
 }
 

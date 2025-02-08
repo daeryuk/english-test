@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f6f8ff;
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+  }
+  .option-container {
+    text-align: center;
+  }
+  .option-container h1 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #1e293b;
+  }
+  .option-button {
+    display: block;
+    width: 280px;
+    margin: 1rem auto;
+    padding: 1rem;
+    background: #6366f1;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s;
+  }
+  .option-button:hover {
+    background: #4f46e5;
+  }

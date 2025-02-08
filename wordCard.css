@@ -333,4 +333,13 @@ body {
     .navigation-controls {
         gap: 2rem;
     }
+}
+
+/* 품사 태그 강조 스타일 */
+.pos-tag {
+    color: var(--primary-dark);
+    font-weight: bold;
+    background-color: #e0e7ff;
+    padding: 2px 4px;
+    border-radius: 4px;
 } 
