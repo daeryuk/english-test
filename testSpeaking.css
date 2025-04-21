@@ -253,14 +253,14 @@ button:active {
 }
 
 #endQuiz {
-    background: linear-gradient(135deg, var(--error) 0%, #dc2626 100%);
-    width: auto;
-    min-width: 150px;
-    margin-top: 1.5rem;
+  background: linear-gradient(135deg, var(--error) 0%, #dc2626 100%);
+  width: auto;
+  min-width: 150px;
+  margin-top: 1.5rem;
 }
 
 #endQuiz:hover {
-    background: linear-gradient(135deg, #dc2626 0%, var(--error) 100%);
+  background: linear-gradient(135deg, #dc2626 0%, var(--error) 100%);
 }
 
 .exit-btn {

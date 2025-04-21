@@ -103,12 +103,62 @@ soundBtn.addEventListener("click", () => {
   playPhraseSound();
 });
 
+// 회화 문구 발음 재생 함수
+function playPhraseSound() {
+  if (phraseList.length === 0 || currentQuestionIndex >= phraseList.length) return;
+  
+  if ('speechSynthesis' in window) {
+    const text = phraseList[currentQuestionIndex].eng;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.9;  // 약간 느린 속도
+    utterance.pitch = 1;
+    
+    speechSynthesis.cancel(); // 이전 음성 취소
+    speechSynthesis.speak(utterance);
+  } else {
+    alert("이 브라우저는 음성 합성을 지원하지 않습니다.");
+  }
+}
+
 // 배열 섞기
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
+}
+
+// 정답 선택지 셔플 함수
+function shuffleOptions(correctAnswer, allPhrases) {
+  // 정답과 다른 3개의 랜덤 보기를 생성
+  let options = [correctAnswer];
+  let tempPhrases = [...allPhrases]; // 원본 배열 복사
+  
+  // 현재 문제를 tempPhrases에서 제거
+  const currentPhrase = tempPhrases.find(
+    (phrase) => phrase[questionLanguage === "eng" ? "kor" : "eng"] === correctAnswer
+  );
+  
+  if (currentPhrase) {
+    const index = tempPhrases.indexOf(currentPhrase);
+    if (index > -1) {
+      tempPhrases.splice(index, 1);
+    }
+  }
+  
+  // 랜덤하게 섞기
+  shuffleArray(tempPhrases);
+  
+  // 3개의 오답 추가
+  for (let i = 0; i < 3 && i < tempPhrases.length; i++) {
+    options.push(tempPhrases[i][questionLanguage === "eng" ? "kor" : "eng"]);
+  }
+  
+  // 선택지 섞기
+  shuffleArray(options);
+  
+  return options;
 }
 
 // 퀴즈 초기화
@@ -135,6 +185,10 @@ function displayQuestion() {
     soundBtn.style.display = "none";
   }
   optionsContainer.style.display = "block";
+  
+  // 종료 버튼 중앙 정렬
+  endQuizBtn.style.display = "block";
+  endQuizBtn.style.margin = "1.5rem auto";
 }
 
 // 버튼 생성
@@ -254,4 +308,73 @@ function checkAnswer(answer) {
   }
 }
 
-// 
+// 다음 문제로 이동
+function nextQuestion() {
+  currentQuestionIndex++;
+  
+  // 모든 문제를 다 풀었으면 결과 표시
+  if (currentQuestionIndex >= phraseList.length) {
+    showResult();
+    return;
+  }
+  
+  // 질문 요소 초기화
+  const answerDisplay = document.getElementById("answer-display");
+  if (answerDisplay) {
+    answerDisplay.remove();
+  }
+  
+  // 다음 문제 버튼 제거
+  const nextButton = document.querySelector(".next-button");
+  if (nextButton) {
+    nextButton.remove();
+  }
+  
+  // 다음 문제 표시
+  displayQuestion();
+}
+
+// 결과 표시
+function showResult() {
+  const accuracy = Math.round((score / attemptedQuestions) * 100);
+  resultText.innerHTML = `
+    <div>총 문제 수: ${attemptedQuestions}</div>
+    <div>맞은 문제 수: ${score}</div>
+    <div>정확도: ${accuracy}%</div>
+  `;
+  
+  endQuizBtn.style.display = "none";
+  resultContainer.style.display = "block";
+  
+  // 재시작 버튼 이벤트
+  restartBtn.addEventListener("click", () => {
+    resultContainer.style.display = "none";
+    initQuiz();
+  });
+  
+  // 틀린 문구 보기 버튼 이벤트
+  wrongPhraseBtn.addEventListener("click", () => {
+    if (wrongPhrases.length === 0) {
+      alert("틀린 문구가 없습니다!");
+      return;
+    }
+    
+    // 틀린 문구 목록 표시 로직
+    const wrongPhrasesList = wrongPhrases.map((phrase, index) => 
+      `<div class="search-item">
+        <div class="search-item-eng">${phrase.eng}</div>
+        <div class="search-item-kor">${phrase.kor}</div>
+       </div>`
+    ).join("");
+    
+    searchPhraseResult.innerHTML = `
+      <div class="search-results">
+        <h3>틀린 문구 목록</h3>
+        ${wrongPhrasesList}
+      </div>
+    `;
+    
+    resultContainer.style.display = "none";
+    quizContainer.style.display = "none";
+  });
+} 
