@@ -173,8 +173,16 @@ h1 {
 .card .meaning {
   background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
   color: var(--secondary-color);
-  transform: rotateY(180deg);
   text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 1;
+}
+
+.card .meaning.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .card.flipped .word {
@@ -215,11 +223,20 @@ h1 {
   transition: all 0.3s;
 }
 
+.nav-arrow i, .sound-btn i {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
 .nav-arrow:hover, .sound-btn:hover {
   background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
   color: var(--primary-color);
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.nav-arrow:hover i, .sound-btn:hover i {
+  color: var(--accent-color);
 }
 
 .nav-arrow:active, .sound-btn:active {

@@ -41,9 +41,13 @@ fetch(deck)
 
 /* 카드 클릭 시, 한글 뜻을 슬라이드하여 표시 */
 card.addEventListener('click', (e) => {
-    if (!e.target.classList.contains('sound-btn') &&
+    // 사운드 버튼이나 아이콘 클릭이 아닌 경우에만 동작
+    if (!e.target.classList.contains('sound-btn') && 
         !e.target.classList.contains('fa-volume-up')) {
+        console.log('카드 클릭됨');
+        // show 클래스 토글
         meaningElement.classList.toggle('show');
+        console.log('의미 요소 클래스:', meaningElement.className);
     }
 });
 
