@@ -2,6 +2,7 @@
 const questionNumber = document.getElementById("question-number");
 const question = document.getElementById("question");
 const optionsContainer = document.getElementById("options-container");
+const soundBtn = document.getElementById("sound-btn");
 
 const startEngQuizBtn = document.getElementById("engQuiz");
 const startKorQuizBtn = document.getElementById("korQuiz");
@@ -13,6 +14,7 @@ const resultContainer = document.getElementById("result-container");
 const resultText = document.getElementById("result-text");
 const restartBtn = document.getElementById("restart-btn");
 const wrongPhraseBtn = document.getElementById("wrongPhrase-btn");
+const exitTestBtn = document.getElementById("exitTest-btn");
 
 const searchPhraseBtn = document.getElementById("searchPhrase-btn");
 const searchPhraseInput = document.getElementById("searchPhrase-input");
@@ -22,7 +24,7 @@ let currentQuestionIndex = 0;
 let score = 0;
 let questionLanguage;
 let wrongPhrases = [];
-let attemptedQuestions = [];
+let attemptedQuestions = 0;
 let phraseList = [];
 
 // JSON 데이터 불러오기
@@ -88,6 +90,19 @@ endQuizBtn.addEventListener("click", () => {
   showResult();
 });
 
+// 테스트 완전 종료 버튼
+exitTestBtn.addEventListener("click", () => {
+  resultContainer.style.display = "none";
+  quizContainer.style.display = "none";
+  score = 0;
+  wrongPhrases = [];
+});
+
+// 단어 발음 재생
+soundBtn.addEventListener("click", () => {
+  playPhraseSound();
+});
+
 // 배열 섞기
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -112,8 +127,12 @@ function displayQuestion() {
   questionNumber.innerText = `# ${currentQuestionIndex + 1}`;
   if (questionLanguage === "eng") {
     question.innerText = `${phraseList[currentQuestionIndex].eng}\n다음 중 올바른 뜻을 선택하세요.`;
+    // 영어 문제일 때 소리 버튼 표시
+    soundBtn.style.display = "inline-block";
   } else {
     question.innerText = `${phraseList[currentQuestionIndex].kor}\n다음 중 올바른 표현을 선택하세요.`;
+    // 한글 문제일 때 소리 버튼 숨김 (정답 후 표시)
+    soundBtn.style.display = "none";
   }
   optionsContainer.style.display = "block";
 }
@@ -127,68 +146,22 @@ function buttonMaker() {
     phraseList
   );
 
-  optionsContainer.innerHTML = shuffledAnswers
-    .map(
-      (answer, index) => `
-        <button type="button" onclick="checkAnswer('${answer.replace(
-          /'/g,
-          "\\'"
-        )}')">${index + 1}. ${answer}</button>
-      `
-    )
-    .join("");
+  let buttonsHTML = '';
+  
+  // 4지선다 레이아웃 생성
+  shuffledAnswers.forEach((answer, index) => {
+    const optionLetter = ['A', 'B', 'C', 'D'][index];
+    
+    buttonsHTML += `
+      <button type="button" onclick="checkAnswer('${answer.replace(/'/g, "\\'")}')">
+        <span class="option-number">${optionLetter}</span>
+        <span class="option-text">${answer}</span>
+      </button>
+    `;
+  });
+  
+  optionsContainer.innerHTML = buttonsHTML;
 }
-
-// 옵션 셔플
-function shuffleOptions(correctAnswer, allAnswers) {
-  let incorrectAnswers = allAnswers
-    .map((phrase) => (questionLanguage === "eng" ? phrase.kor : phrase.eng))
-    .filter((phrase) => phrase !== correctAnswer);
-
-  let sortedOptions = [];
-  for (let i = 0; i < 3; i++) {
-    const randomIndex = Math.floor(Math.random() * incorrectAnswers.length);
-    sortedOptions.push(incorrectAnswers[randomIndex]);
-    incorrectAnswers.splice(randomIndex, 1);
-  }
-  sortedOptions.push(correctAnswer);
-  shuffleArray(sortedOptions);
-  return sortedOptions;
-}
-
-// 다음 문제
-function nextQuestion() {
-  currentQuestionIndex++;
-  if (currentQuestionIndex < phraseList.length) {
-    displayQuestion();
-  } else {
-    showResult();
-  }
-}
-
-// 결과 표시
-function showResult() {
-  optionsContainer.style.display = "none";
-  question.style.display = "none";
-
-  let resultPercentage = (score / attemptedQuestions) * 100;
-  resultText.innerText = `${attemptedQuestions}문제 중에 ${score}개를 맞혔습니다.\n점수는 ${resultPercentage.toFixed(2)}점 입니다.`;
-
-  resultContainer.style.display = "block";
-}
-
-// 다시 시작
-restartBtn.addEventListener("click", () => {
-  score = 0;
-  wrongPhrases = [];
-  resultContainer.style.display = "none";
-  question.style.display = "";
-  endQuizBtn.style.display = "";
-  initQuiz();
-});
-
-// 틀린 문구 보기
-wrongPhraseBtn.addEventListener("click", showWrongPhrases);
 
 // 정답 체크
 function checkAnswer(answer) {
@@ -197,41 +170,88 @@ function checkAnswer(answer) {
     phraseList[currentQuestionIndex][
       questionLanguage === "eng" ? "kor" : "eng"
     ];
+    
+  // 선택한 모든 버튼 선택
+  const allButtons = document.querySelectorAll('#options-container button');
+  
+  // 모든 버튼 비활성화
+  allButtons.forEach(btn => {
+    btn.disabled = true;
+    btn.style.pointerEvents = 'none';
+  });
 
   if (answer === correctAnswer) {
+    // 정답인 경우
     score++;
-    nextQuestion();
+    
+    // 선택한 버튼 찾기 (정답 버튼)
+    let selectedButton;
+    allButtons.forEach(btn => {
+      if (btn.textContent.includes(answer)) {
+        selectedButton = btn;
+      }
+    });
+    
+    // 정답 효과 적용
+    if (selectedButton) {
+      selectedButton.classList.add('correct-answer');
+      selectedButton.innerHTML = `${selectedButton.innerHTML} <i class="fas fa-check"></i>`;
+      
+      // 1.2초 후 다음 문제로 이동
+      setTimeout(() => {
+        nextQuestion();
+      }, 1200);
+    } else {
+      nextQuestion();
+    }
   } else {
     wrongPhrases.push(phraseList[currentQuestionIndex]);
+    
+    // 오답 버튼 찾기
+    let selectedButton;
+    let correctButton;
+    
+    allButtons.forEach(btn => {
+      if (btn.textContent.includes(answer)) {
+        // 사용자가 선택한 버튼 (오답)
+        selectedButton = btn;
+        selectedButton.classList.add('wrong-answer');
+        selectedButton.innerHTML = `${selectedButton.innerHTML} <i class="fas fa-times"></i>`;
+      }
+      if (btn.textContent.includes(correctAnswer)) {
+        // 실제 정답 버튼
+        correctButton = btn;
+        setTimeout(() => {
+          correctButton.classList.add('show-correct');
+          correctButton.innerHTML = `${correctButton.innerHTML} <i class="fas fa-check"></i>`;
+        }, 500);
+      }
+    });
 
     let answerDisplay = document.createElement("div");
     answerDisplay.setAttribute("id", "answer-display");
     answerDisplay.className = "wrong-answer-feedback";
     answerDisplay.innerText = `오답! 정답은: ${correctAnswer}`;
 
-    optionsContainer.style.display = "none";
-    question.appendChild(answerDisplay);
+    // 오답 시 소리 버튼 표시 (한글 문제일 때도)
+    soundBtn.style.display = "inline-block";
+    
+    // 1.5초 후 다음 문제 버튼 표시
+    setTimeout(() => {
+      optionsContainer.style.display = "none";
+      question.appendChild(answerDisplay);
 
-    let nextButton = document.createElement("button");
-    nextButton.innerText = "다음 문제";
-    nextButton.addEventListener("click", () => {
-      nextQuestion();
-    });
+      let nextButton = document.createElement("button");
+      nextButton.innerText = "다음 문제";
+      nextButton.classList.add('next-button');
+      
+      nextButton.addEventListener("click", () => {
+        nextQuestion();
+      });
 
-    question.appendChild(nextButton);
+      question.appendChild(nextButton);
+    }, 1500);
   }
 }
 
-// 틀린 문구 보기 함수
-function showWrongPhrases() {
-  let wrongPhrasesList = wrongPhrases.map(
-    (phrase) => `${phrase.eng} : ${phrase.kor}`
-  ).join("<br>");
-  
-  if (wrongPhrasesList.length === 0) {
-    resultText.innerHTML = `틀린 문구가 없습니다!`;
-  } else {
-    resultText.innerHTML = `<br>${wrongPhrasesList}`;
-  }
-  resultContainer.style.display = "block";
-}
+// 

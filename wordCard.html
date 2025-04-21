@@ -3,63 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네온 단어 카드 - MZ세대 게임 스타일</title>
     <link rel="stylesheet" href="wordCard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <title>Word Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <!-- 파티클 배경 -->
+    <div id="particles-container"></div>
+    
+    <header>
+        <h1>네온 단어 카드</h1>
+        <p class="subtitle">MZ세대를 위한 영단어 학습 앱</p>
+    </header>
+
     <div class="container">
-        <h1>Word Card</h1>
         <div class="card-container">
+            <!-- 단어 카드 -->
             <div class="card">
-                <div class="card-counter">
-                    <span id="currentIndex">1</span> / <span id="totalWords">0</span>
-                </div>
-                <div class="card-content">
-                    <p class="word"></p>
-                    <button class="sound-btn">
-                        <i class="fas fa-volume-up"></i>
+                <div class="word"></div>
+                <div class="meaning"></div>
+            </div>
+            
+            <!-- 컨트롤 패널 -->
+            <div class="controls">
+                <button class="sound-btn">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                
+                <div class="counter"></div>
+                
+                <div class="navigation">
+                    <button class="nav-arrow prev">
+                        <i class="fas fa-chevron-left"></i>
                     </button>
-                    <p class="meaning"></p>
+                    <button class="nav-arrow next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
+            
+            <!-- 추가 기능 -->
+            <div class="extra-controls">
+                <div class="jump-container">
+                    <input type="number" id="jumpInput" placeholder="카드 번호" min="1">
+                    <button class="jump-btn">이동</button>
+                </div>
+                <button class="word-list-btn">단어 목록</button>
+            </div>
+            
+            <!-- 비주얼 효과 요소 -->
+            <div class="glow-effect top-left"></div>
+            <div class="glow-effect bottom-right"></div>
         </div>
-        <div class="navigation-controls">
-            <button id="prevBtn" class="nav-arrow">
-                <i class="fas fa-circle-chevron-left"></i>
-            </button>
-            <button id="nextBtn" class="nav-arrow">
-                <i class="fas fa-circle-chevron-right"></i>
-            </button>
+        
+        <!-- 진행 표시줄 -->
+        <div class="progress-container">
+            <div class="progress-bar"></div>
         </div>
-        <div class="jump-to-container">
-            <input type="number" id="jumpInput" placeholder="번호 입력" min="1">
-            <button id="jumpBtn">이동</button>
+        
+        <!-- 게임 정보 -->
+        <div class="game-info">
+            <div class="info-box">
+                <span class="info-label">난이도</span>
+                <span class="info-value">토익</span>
+            </div>
+            <div class="info-box">
+                <span class="info-label">학습 시간</span>
+                <span class="info-value timer">00:00</span>
+            </div>
+            <div class="info-box">
+                <span class="info-label">점수</span>
+                <span class="info-value score">0</span>
+            </div>
         </div>
-        <button id="wordListBtn" class="word-list-btn">단어 리스트 보기</button>
     </div>
-
-    <!-- 단어 리스트 모달 -->
+    
+    <!-- 단어 목록 모달 -->
     <div id="wordListModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>단어 리스트</h2>
+                <h2>전체 단어 목록</h2>
                 <button class="close-btn">&times;</button>
             </div>
             <div class="modal-body">
-                <table id="wordTable">
+                <table>
                     <thead>
                         <tr>
-                            <th>번호</th>
-                            <th>영어</th>
-                            <th>한글</th>
+                            <th>#</th>
+                            <th>단어</th>
+                            <th>의미</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody id="wordTableBody">
+                        <!-- 단어 목록이 동적으로 추가됩니다 -->
+                    </tbody>
                 </table>
             </div>
         </div>
     </div>
+    
+    <!-- 게임 성취 배지 영역 -->
+    <div class="achievements">
+        <div class="achievement-header">
+            <h3>성취 배지</h3>
+        </div>
+        <div class="achievement-list">
+            <div class="achievement-badge" data-tooltip="첫 학습 완료">
+                <i class="fas fa-award"></i>
+            </div>
+            <div class="achievement-badge locked" data-tooltip="10개 단어 암기">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <div class="achievement-badge locked" data-tooltip="3일 연속 학습">
+                <i class="fas fa-fire"></i>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2023 네온 단어 카드 | <a href="#" class="footer-link">개인정보처리방침</a> | <a href="#" class="footer-link">도움말</a></p>
+    </footer>
+
     <script src="wordCard.js"></script>
 </body>
 </html> 

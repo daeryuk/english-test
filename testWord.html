@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="testWord.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <title>English Word Test</title>
   </head>
   <body>
@@ -13,8 +17,12 @@
       <button id="engQuiz">영어 단어 맞추기</button>
       <button id="korQuiz">한글 단어 맞추기</button>
       <div id="searchWord-container">
-        <input type="text" id="searchWord-input" placeholder="영어 단어 입력" />
-        <button id="searchWord-btn">단어 찾아보기</button>
+        <div class="search-input-wrapper">
+          <input type="text" id="searchWord-input" placeholder="영어 단어 입력..." />
+          <button id="searchWord-btn" class="search-icon">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
       </div>
       <p id="searchWord-result"></p>
     </div>
@@ -22,7 +30,10 @@
     <div id="quiz-container" style="display: none">
       <div id="question-container">
         <h2 id="question-number"></h2>
-        <p id="question"></p>
+        <div class="question-wrapper">
+          <p id="question"></p>
+          <button id="sound-btn" class="sound-btn"><i class="fas fa-volume-up"></i></button>
+        </div>
         <!--옵션 버튼-->
         <div id="options-container"></div>
         <button id="endQuiz">테스트 종료</button>
@@ -33,6 +44,7 @@
         <p id="result-text"></p>
         <button id="restart-btn">다시 시작</button>
         <button id="wrongWord-btn">틀린 단어 보기</button>
+        <button id="exitTest-btn" class="exit-btn">종료</button>
       </div>
     </div>
     <script src="testWord.js"></script>

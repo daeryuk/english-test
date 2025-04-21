@@ -4,16 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <title>English Learning Hub</title>
 </head>
 <body>
+    <div class="particles-container" id="particles-js"></div>
     <div class="container">
-        <h1>English Learning Hub</h1>
+        <h1>English<span>Learning</span></h1>
         <div class="button-container">
-            <a href="testWord.html" class="nav-button word-test">단어 테스트</a>
-            <a href="testSpeaking.html" class="nav-button speaking-test">회화 테스트</a>
-            <a href="option.html" class="nav-button word-card">단어 카드</a>
+            <a href="testWord.html" class="nav-button word-test">
+                <span class="icon"><i class="fas fa-book"></i></span>
+                <span class="text">단어 테스트</span>
+            </a>
+            <a href="testSpeaking.html" class="nav-button speaking-test">
+                <span class="icon"><i class="fas fa-comments"></i></span>
+                <span class="text">회화 테스트</span>
+            </a>
+            <a href="option.html" class="nav-button word-card">
+                <span class="icon"><i class="fas fa-layer-group"></i></span>
+                <span class="text">단어 카드</span>
+            </a>
         </div>
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#7c3aed"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#7c3aed",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>

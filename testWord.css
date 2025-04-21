@@ -1,28 +1,66 @@
 /*testWord.css*/
-/* Modern color palette and design */
+/* MZ 세대를 위한 모던 UI 디자인 - 네온 효과와 생동감 있는 색상 */
 :root {
-  --primary: #6366f1;
-  --primary-dark: #4f46e5;
-  --secondary: #ec4899;
-  --success: #22c55e;
+  --primary: #7c3aed; /* 보라색 계열 */
+  --primary-dark: #6d28d9;
+  --secondary: #ec4899; /* 핑크 계열 */
+  --success: #10b981; /* 민트 계열 */
   --error: #ef4444;
-  --background: #f8fafc;
-  --text: #1e293b;
-  --text-light: #64748b;
-  --surface: #ffffff;
-  --border: #e2e8f0;
+  --background: #0f172a; /* 어두운 배경 */
+  --text: #f8fafc;
+  --text-light: #cbd5e1;
+  --surface: #1e293b;
+  --border: #334155;
+  --accent: #38bdf8; /* 밝은 파란색 포인트 */
+  --neon-glow: 0 0 10px rgba(124, 58, 237, 0.5), 0 0 20px rgba(124, 58, 237, 0.3);
 }
 
 body {
-  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  font-family: 'Poppins', 'Segoe UI', 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0;
   padding: 2rem;
-  background: linear-gradient(135deg, #f6f8ff 0%, #f1f5ff 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   color: var(--text);
   min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 배경 그라데이션 효과 */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.15), transparent 60%),
+              radial-gradient(circle at bottom left, rgba(236, 72, 153, 0.15), transparent 60%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+#buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 500px;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+#buttons-container > button {
+  width: 100%;
+  max-width: 300px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#buttons-container > button:hover {
+  transform: translateY(-5px) scale(1.02);
 }
 
 .container {
@@ -30,46 +68,86 @@ body {
   max-width: 800px;
   background: var(--surface);
   padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25), var(--neon-glow);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 h1 {
   color: var(--text);
   margin-bottom: 2rem;
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2.75rem;
+  font-weight: 800;
   text-align: center;
-  background: linear-gradient(120deg, var(--primary), var(--secondary));
+  background: linear-gradient(120deg, var(--primary), var(--secondary), var(--accent));
   -webkit-background-clip: text;
-  background-clip: text;  /* 추가된 표준 속성 */
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: var(--neon-glow);
+  letter-spacing: -0.5px;
 }
+
 #searchWord-container {
   width: 100%;
   max-width: 500px;
-  margin: 2rem auto;
+  margin: 1.5rem auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-input-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 #searchWord-input {
-  width: calc(100% - 3rem); /* 패딩 값을 고려하여 조정 */
-  padding: 1rem 1.5rem;
+  width: 100%;
+  padding: 1rem 3rem 1rem 1.25rem;
   font-size: 1rem;
   border: 2px solid var(--border);
-  border-radius: 12px;
-  background: var(--surface);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  background: rgba(30, 41, 59, 0.7);
+  color: var(--text);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
-  margin-bottom: 1rem; /* 버튼과의 간격 */
 }
+
 #searchWord-input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.3), var(--neon-glow);
   outline: none;
 }
 
 #searchWord-input::placeholder {
   color: var(--text-light);
+  opacity: 0.6;
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  margin: 0;
+}
+
+.search-icon:hover {
+  color: var(--secondary);
+  transform: translateY(-50%) scale(1.1);
+  text-shadow: var(--neon-glow);
 }
 
 button {
@@ -77,21 +155,39 @@ button {
   font-weight: 600;
   padding: 1rem 1.5rem;
   border: none;
-  border-radius: 12px;
+  border-radius: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  background: var(--primary);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   color: white;
-  width: 100%; /* 입력폼과 동일한 너비 */
   margin: 0.5rem 0;
   position: relative;
   overflow: hidden;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
 }
 
 button:hover {
-  background: var(--primary-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3), var(--neon-glow);
+}
+
+button:hover::before {
+  left: 100%;
 }
 
 button:active {
@@ -99,125 +195,269 @@ button:active {
 }
 
 #endQuiz {
-  background: var(--error);
+  background: linear-gradient(135deg, var(--error) 0%, #dc2626 100%);
   width: auto;
   min-width: 150px;
+  margin-top: 1.5rem;
 }
 
 #endQuiz:hover {
-  background: #dc2626;
+  background: linear-gradient(135deg, #dc2626 0%, var(--error) 100%);
+}
+
+.exit-btn {
+  background: linear-gradient(135deg, var(--error) 0%, #dc2626 100%);
+}
+
+.exit-btn:hover {
+  background: linear-gradient(135deg, #dc2626 0%, var(--error) 100%);
 }
 
 #restart-btn {
-  background: var(--success);
+  background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
 }
 
 #restart-btn:hover {
-  background: #16a34a;
+  background: linear-gradient(135deg, #059669 0%, var(--success) 100%);
 }
 
 #wrongWord-btn {
-  background: var(--secondary);
+  background: linear-gradient(135deg, var(--secondary) 0%, #db2777 100%);
 }
 
 #wrongWord-btn:hover {
-  background: #db2777;
+  background: linear-gradient(135deg, #db2777 0%, var(--secondary) 100%);
 }
 
 #question-container {
   text-align: center;
   margin-top: 2rem;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  background: rgba(30, 41, 59, 0.7);
+  border-radius: 24px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.question-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
 #question {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin-bottom: 1.5rem;
   color: var(--text);
   line-height: 1.6;
+  font-weight: 500;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.sound-btn {
+  background: rgba(124, 58, 237, 0.2);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  color: var(--primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin: 0.5rem auto 1.5rem;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: var(--neon-glow);
+}
+
+.sound-btn:hover {
+  color: white;
+  background-color: var(--primary);
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.7);
+}
+
+.sound-btn:active {
+  transform: scale(0.95);
 }
 
 #options-container {
   display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+#options-container button {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding: 1.25rem;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.8);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+  text-transform: none;
+  letter-spacing: normal;
+  position: relative;
+  overflow: hidden;
+}
+
+.option-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  background-color: var(--primary);
+  color: white;
+  border-radius: 50%;
+  margin-right: 14px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.option-text {
+  flex-grow: 1;
+}
+
+#options-container button::after {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: var(--primary);
+  transform: scaleY(0);
+  transition: transform 0.2s ease;
+}
+
+#options-container button:hover {
+  border-color: var(--primary);
+  background-color: rgba(30, 41, 59, 0.9);
+  transform: translateX(5px);
+  padding-left: 1.5rem;
+}
+
+#options-container button:hover::after {
+  transform: scaleY(1);
+}
+
+#options-container button:hover .option-number {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.7);
+}
+
+.correct-answer {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.1)) !important;
+  border-color: var(--success) !important;
+  animation: correctPulse 1s infinite;
+}
+
+.wrong-answer {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.3), rgba(239, 68, 68, 0.1)) !important;
+  border-color: var(--error) !important;
+}
+
+.show-correct {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.1)) !important;
+  border-color: var(--success) !important;
+  animation: showCorrect 0.5s ease-out;
+}
+
+@keyframes correctPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+@keyframes showCorrect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.next-button {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   margin-top: 1.5rem;
+  animation: fadeIn 0.5s ease-out;
 }
 
 #answer-display {
-  margin: 1rem 0;
-  padding: 1rem;
-  background: #fee2e2;
-  border-radius: 8px;
-  color: var(--error);
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background: rgba(239, 68, 68, 0.15);
+  border-radius: 16px;
+  color: #fecaca;
   font-weight: 500;
+  border-left: 4px solid var(--error);
+  animation: fadeIn 0.5s ease-out;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 #result-container {
   text-align: center;
   margin-top: 2rem;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 2.5rem;
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25), var(--neon-glow);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  animation: fadeIn 0.5s ease-out;
+}
+
+#result-container button {
+  margin: 0.75rem;
+  min-width: 200px;
 }
 
 #result-text {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   line-height: 1.6;
-  margin: 1rem 0;
+  margin: 1.5rem 0 2rem;
   color: var(--text);
   background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-weight: 600;
-}
-
-@media (max-width: 640px) {
-  body {
-      padding: 1rem;
-  }
-
-  .container {
-      padding: 1rem;
-  }
-
-  h1 {
-      font-size: 2rem;
-  }
-
-  button {
-      padding: 0.875rem 1.25rem;
-  }
-
-  #question {
-      font-size: 1.1rem;
-  }
-}
-
-/* Optional: Add smooth transitions for all elements */
-* {
-  transition: all 0.3s ease;
-}
-
-/* Optional: Add subtle hover effects to containers */
-.container:hover {
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  font-weight: 700;
+  text-shadow: var(--neon-glow);
 }
 
 /* 말풍선 스타일 */
 .speech-bubble {
   position: relative;
-  background: var(--surface);
-  border-radius: 16px;
+  background: rgba(30, 41, 59, 0.7);
+  border-radius: 24px;
   padding: 1.5rem;
   margin: 2rem auto;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), var(--neon-glow);
   max-width: 500px;
-  border: 2px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.5s ease-out;
 }
 
 .speech-bubble::before {
@@ -228,7 +468,7 @@ button:active {
   transform: translateX(-50%);
   border-width: 0 15px 15px 15px;
   border-style: solid;
-  border-color: var(--border) transparent;
+  border-color: rgba(255, 255, 255, 0.05) transparent;
 }
 
 .speech-bubble::after {
@@ -239,7 +479,7 @@ button:active {
   transform: translateX(-50%);
   border-width: 0 15px 15px 15px;
   border-style: solid;
-  border-color: var(--surface) transparent;
+  border-color: rgba(30, 41, 59, 0.7) transparent;
 }
 
 /* 말풍선 내부 텍스트 스타일 */
@@ -254,9 +494,11 @@ button:active {
 .speech-bubble-highlight {
   color: var(--primary);
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   display: block;
   margin-top: 0.5rem;
+  text-shadow: var(--neon-glow);
+  animation: pulse 2s infinite;
 }
 
 /* 애니메이션 효과 */
@@ -271,12 +513,51 @@ button:active {
   }
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    text-shadow: var(--neon-glow);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(124, 58, 237, 0.7), 0 0 30px rgba(124, 58, 237, 0.4);
+  }
+  100% {
+    text-shadow: var(--neon-glow);
+  }
+}
+
 .speech-bubble {
-  animation: popIn 0.3s ease-out forwards;
+  animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 /* 반응형 조정 */
 @media (max-width: 640px) {
+  body {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  button {
+    padding: 0.875rem 1.25rem;
+  }
+
+  #question {
+    font-size: 1.25rem;
+  }
+  
   .speech-bubble {
     margin: 1.5rem 1rem;
     padding: 1rem;
@@ -287,9 +568,26 @@ button:active {
   }
   
   .speech-bubble-highlight {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+  }
+  
+  .sound-btn {
+    width: 50px;
+    height: 50px;
   }
 }
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  #options-container button {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}
+
 .error-message {
   color: var(--error);
 }
